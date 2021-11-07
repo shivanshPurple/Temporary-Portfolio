@@ -1,9 +1,3 @@
-Unity
-shopid 19
-stupid cupids
-pocket tanks 3d
-pocket tanks (From a training course)
-
 Android Studio
 Cibiod
 Document OCR
