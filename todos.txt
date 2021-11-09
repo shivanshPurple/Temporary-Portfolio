@@ -2,7 +2,3 @@ Python
 Flask server for purple gram
 Photoshop automation
 Data visualization for football transfers
-
-certifications
-SIH android app
-add internship certificates
