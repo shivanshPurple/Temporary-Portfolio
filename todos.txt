@@ -1,4 +1,0 @@
-Python
-Flask server for purple gram
-Photoshop automation
-Data visualization for football transfers
