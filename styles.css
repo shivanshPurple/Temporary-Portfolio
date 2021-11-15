@@ -1,7 +1,7 @@
 .title {
     color: rgb(218, 218, 218);
     text-align: center;
-    margin: 30px 150px;
+    margin: 30px 100px;
 }
 
 .paragraph {
@@ -9,7 +9,43 @@
     text-align: left;
 }
 
-.ordered-list {
-    text-align: center;
-    list-style-position: inside;
+@media(max-width:992px) {
+    .wrapper {
+        width: 100%;
+    }
+}
+
+.panel-heading {
+    padding: 0;
+    border: 0;
+}
+
+.panel-title>a, .panel-title>a:active {
+    display: block;
+    padding: 15px;
+    background-color: rgb(60, 60, 60);
+    font-size: 24px;
+    color: rgb(218, 218, 218);
+    font-weight: bold;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    text-decoration: none;
+}
+
+.panel-heading a:before {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    transition: all 0.5s;
+}
+
+.panel-heading.active a:before {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.panel-collapse {
+    background-color: rgb(47, 47, 47);
+    font-size: 14px;
 }

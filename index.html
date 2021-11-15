@@ -3,351 +3,640 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
   <title>Purple</title>
 </head>
 
 <body style="background-color:rgb(47, 47, 47);">
   <section class="title">
-    <div class="container">
-      <div class="data">
-        <h1 class="headings"><b><a name="unity">UNITY</b></h1></a>
+    <div class="container-fluid" style="width: 80%;">
+      <div name="unity">
+        <h1 class="headings"><b>UNITY</b></h1>
         <br>
-        <div>
-          <h2>Reinforced Learning - Path Detection</h2>
-          <h5> ● C# ● Reinforcement Learning ● Neuro-Evolution of Augmenting Topologies (NEAT) ● Car Physics</h5>
-          <h6>Duration : 4 months</h6>
-          <br>
-          <p class="paragraph">This was the project at the end of my first year in college. I game myself a task to
-            design a path detection system for a car via reinforcement learning. After a lot of failed attempts in the
-            first 2 months (mainly because I was using Unity's ML-Kit that was in beta at that time and less
-            documentation), I finally managed to make it work. <br><br>
-            I used the NEAT algorithm to create a neural network that can detect the path. The neural network is
-            completely written in C# by me. This neural network is trained using the Reinforcement Learning algorithm
-            that means it learns from the mistakes it makes. The cars that makes least mistakes are the ones that are
-            most likely to produce next generations of cars. These car reproduce and mutate to create new cars.
-            This process is repeated for a certain number of generations. <br><br>
-            This is a very interesting project that I have done for a long time and learnt a lot from it. For
-            example: I have learnt to ditch ideas that don't work even if I had invested a lot of time in them and
-            try other ideas.
-          </p>
-          <video width="1152" height="648" autoplay muted loop controls>
-            <source src="media/mlpd.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseOne">
+                  REINFORCED LEARNING - PATH DETECTION
+                  <h5>● C# ● Reinforcement Learning ● Neuro-Evolution of Augmenting Topologies (NEAT) ● Car Physics
+                  </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 4 months</h3>
+                </center>
+                <p class="paragraph">This was the project at the end of my first year in college. I game myself a task
+                  to design a path detection system for a car via reinforcement learning. After a lot of failed
+                  attempts
+                  in the first 2 months (mainly because I was using Unity's ML-Kit that was in beta at that time and
+                  less documentation), I finally managed to make it work. <br><br>
+                  I used the NEAT algorithm to create a neural network that can detect the path. The neural network is
+                  completely written in C# by me. This neural network is trained using the Reinforcement Learning
+                  algorithm that means it learns from the mistakes it makes. The cars that makes least mistakes are
+                  the
+                  ones that are most likely to produce next generations of cars. These car reproduce and mutate to
+                  create new cars.
+                  This process is repeated for a certain number of generations. <br><br>
+                  This is a very interesting project that I have done for a long time and learnt a lot from it. For
+                  example: I have learnt to ditch ideas that don't work even if I had invested a lot of time in them
+                  and try other ideas.
+                </p>
+                <video width="1152" height="648" autoplay muted loop controls>
+                  <source src="media/mlpd.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h2>Shopid-19</h2>
-          <h5> ● C# ● Blender</h5>
-          <h6>Duration : 3 months</h6>
-          <br>
-          <p class="paragraph">This is my biggest game development project. The game is based on social distancing and
-            Covid-19. The game is a simulation of a shopping mall and the player has to buy items to but also not come
-            near other people due to social distancing. The game is built using C# and Blender.
-            <br>
-            I need a 3d designer to complete the map.
-            <br>
-            <a href="shopid-19.html" target="_blank">A detailed explanation can be found here.</a>
 
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseTwo">
+                  SUPERMARKET LOW POLY GAME
+                  <h5> ● C# ● Blender ● Low Poly </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 3 months</h3>
+                </center>
+                <p class="paragraph">This is my biggest game development project. The game is based on social
+                  distancing
+                  and Covid-19. The game is a simulation of a shopping mall and the player has to buy items but also
+                  not
+                  come near other people due to social distancing. The game is built using C# and Blender.
+                  <br>
+                  I need a 3d designer to complete the map.
+                  <br>
+                  <a href="shopid-19.html" target="_blank">A detailed explanation can be found here.</a>
+                </p>
+                <video width="1152" height="648" autoplay muted loop controls>
+                  <source src="media/shopid-19.mp4" type="video/mp4">
+                </video>
+                <br>
+                <iframe width="1152" height="648" src="https://www.youtube.com/embed/rA-2zwDORm8"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          </p>
-          <video width="1152" height="648" autoplay muted loop controls>
-            <source src="media/shopid-19.mp4" type="video/mp4">
-          </video>
-          <br>
-          <iframe width="1152" height="648" src="https://www.youtube.com/embed/rA-2zwDORm8"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-          <br>
-          <br>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseThree">
+                  ONLINE MULTIPLAYER CARD GAME (STUPID CUPIDS)
+                  <h5> ● C# ● Multiplayer-Syncing ● MirrorNetworking ● WebSockets ● Photoshop </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 2 months</h3>
+                </center>
+                <p class="paragraph">The objective of this is to make a card-turn based multiplayer game. The game is
+                  based
+                  on red flags(Card game). This game is currently under a lot of development. <br>
+                  <b><u>The video is really jittery because of multiple instances of the game running at the same
+                      time.</u></b>
+                </p>
+                <video width="1152" height="648" autoplay muted loop controls>
+                  <source src="media/StupidCupids.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h2>Multiplayer Card Game (Stupid Cupids)</h2>
-          <h5> ● C# ● Multiplayer-Syncing ● MirrorNetworking ● WebSockets ● Photoshop</h5>
-          <h6>Duration : 2 months</h6>
-          <br>
-          <p class="paragraph">The objective of this is to make a card-turn based multiplayer game. The game is based
-            on red flags(Card game). This game is currently under a lot of development. <br>
-            <b><u>The video is really jittery because of multiple instances of the game running at the same
-                time.</u></b>
-          </p>
-          <video width="1152" height="648" autoplay muted loop controls>
-            <source src="media/StupidCupids.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
-        </div>
-        <div>
-          <h2>Pocket Tanks 3D</h2>
-          <h5> ● C# ● Blender ● Photoshop ● Particle Systems</h5>
-          <h6>Duration : 2 months</h6>
-          <br>
-          <p class="paragraph">In 2017, this was my <b><u>first ever project</b></u>. I first applied my coding and 3d
-            modeling skills on this tank battle game. I couldn't finish the game due to college schedule and study but
-            it was a <b><u>great learning experience</b></u>. I also learned how shaders and materials work in 3d in
-            unity and blender.
-          </p>
-          <video width="1152" height="648" autoplay muted loop>
-            <source src="media/PocketTanks3d.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
-        </div>
-        <h1 class="headings"><b>ANDROID JAVA</b></h1>
-        <br>
-        <div>
-          <a name="cibiod">
-            <h2>Android App for Wireless Stethoscope</h2>
-          </a>
-          <h5> ● Java ● Firebase ● Bluetooth ● Byte Serialization ● UI/UX Design</h5>
-          <h6>Duration : 8 months</h6>
-          <br>
-          <p class="paragraph">This is my biggest project that I have ever undertaken. I have made an app that can
-            connect to a wireless stethoscope and send the data to the app. The app can also send the data back to the
-            stethoscope for communication. The app can also save the data to the cloud for future use. It uses Firebase
-            for backend and Bluetooth for communication. <br>
-            Made this app as the only full stack developer in the software team and had to work in unison with the
-            hardware team. Learnt about how wav files work and how to encrypt and decrypt data for optimal communication
-            via Bluetooth.
-          </p>
-          <a href="stetho.html" target="_blank">More Details</a><br>
-          <a href="media/CIBIOD.jpeg" target="_blank">Internship Certificate</a><br>
-          <video width="320" height="640" autoplay muted loop controls>
-            <source src="media/stetho.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
-        </div>
-        <div>
-          <h2>Document OCR</h2>
-          <h5> ● Java ● Firebase ● ML Kit Text Recognition</h5>
-          <h6>Duration : 2 weeks</h6>
-          <br>
-          <p class="paragraph">This is a project that I have done for the purpose of learning how to use ML Kit. I
-            have made a document OCR app that can recognize a person's document number from an image. The app uses
-            Firebase for backend and ML Kit for text recognition. It can currently recognize a document number from
-            aadhar card and pan card and add these details to an excel sheet for further use.
-          </p>
-          <video width="320" height="640" autoplay muted loop controls>
-            <source src="media/document OCR.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
-        </div>
-        <div>
-          <h2>Image To ASCII characters</h2>
-          <h5> ● Java ● Image Processing</h5>
-          <h6>Duration : 1 week</h6>
-          <br>
-          <p class="paragraph"> This app can convert an image to ASCII characters. These ASCII characters can be used
-            to create a custom image. This app is made using Java and Image Processing. The image can be shared to other
-            apps too.
-          </p>
-          <video width="320" height="640" autoplay muted loop>
-            <source src="media/ascii.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
-        </div>
-        <h1 class="headings"><b><a name="flutter">FLUTTER</b></h1></a>
-        <div>
-          <h2>Cryptocurrency Share Manager</h2>
-          <h5>● Dart ● Cloud Firestore ● Firebase Hosting</h5>
-          <h6>Duration : 2-3 weeks</h6>
-          <br>
-          <p class="paragraph">A website was needed to manage the cryptocurrency shares. The website was built using
-            Flutter, Dart and Firebase. A lot of people had there shares in one portfolio and it was difficult to manage
-            and tell everyone's profit and loss. So this was the solution that automatically divides the shares based on
-            their percentage. <br> The web app has regular 50-100 visits per day for now and has a sleek and clean
-            design.
-            It is a real time application that keeps on updating every second. It can also show the profit and loss in
-            different currencies.
-          </p>
-          <a href="https://purple-crypto.web.app/#/" target="_blank">Purple Crypto Website</a>
-          <br>
-          <p style="font-size: 10px"><i>Ignore the losses :-(</i></p>
-          <br>
-          <img src="media/PurpleCryptoSS.png" alt="image of project1" width="1150" height="600">
-          <br>
-          <br>
-        </div>
-        <div>
-          <h2><a name="reddit">Custom Reddit Feed</a></h2>
-          <h5>● Dart ● Python ● Flask ● API ● PostgreSQL</h5>
-          <h6>Duration : 1-2 months</h6>
-          <br>
-          <p class="paragraph">January of 2021 I was looking for a new way to get my daily news and memes feed. I
-            recently learnt Flutter and wanted to make more of it. So, I decided to make a custom news feed that shows
-            the top posts from Reddit. The app is built using Python, Flask and API. The server refreshes everyday at 4
-            o'clock in the morning. The server side details is in the python section of this page. There are plans to
-            also include Instagram feed too.<br>
-            The design is sleek and futuristic. The UI inspiration is from Tinder. It is currently under development and
-            needs more polishing.<br><br>
-            The backend server is written in Python and uses Flask for the backend. The server is hosted on AWS and uses
-            PostgreSQL for the database. The server is responsible for fetching the data from the Reddit API and storing
-            it in the database for the app to use. <br>
-          </p>
-          <video width="360" height="640" autoplay muted loop>
-            <source src="media/PurpleGram1.mp4" type="video/mp4">
-          </video>
-          <video width="320" height="640" autoplay muted loop>
-            <source src="media/PurpleGram2.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
-        </div>
-        <div>
-          <h2>Automatic Monotonous Messaging</h2>
-          <h5>● Dart ● Android Java ● Android Alarms </h5>
-          <h6>Duration : 2-3 days</h6>
-          <br>
-          <p class="paragraph">A small app that sends you reminders in the form of notifications to send messages to
-            someone on a certain day/time. It can automatically type out a random message and send its intent to
-            whatsapp. The user just has to click on the notification and it will send the message. The user can save
-            their friends' nicknames and their phone numbers and the type of random messages you want to send.
-            <br>
-            Here is an example usecase where the app sends you a notification to send good morning wishes to someone.
-          </p>
-          <video width="320" height="640" autoplay muted loop controls>
-            <source src="media/PurpleMessenger1.mp4" type="video/mp4">
-          </video>
-          <iframe style="width: 320px; height:640px" src="media/PurpleMessengerSS.jpg"></iframe>
-          <iframe style="width: 320px; height:640px" src="media/PurpleMessengerSS2.jpg"></iframe>
-        </div>
-        <h1 class="headings"><b><a name="python">PYTHON</b></h1></a>
-        <div>
-          <h2>Flask Server for Reddit</h2>
-          <h5>● Python ● Flask ● API ● Praw Reddit Api ● PostgreSQL</h5>
-          <h6>Duration : 1-2 months</h6>
-          <br>
-          <p class="paragraph">I made a custom flask server for loading the data from the Reddit API and storing it in
-            a PostgreSQL database. The server is going to be hosted on AWS and uses PostgreSQL for the database. The
-            server is also responsible for sending the data to the frontend. The frontend is built using Flutter.
-          </p>
-          <a href="index.html#reddit">Scroll to the flutter project</a>
-          <br>
-          <br>
-        </div>
-        <div>
-          <h2><a name="reddit">Mockup Photoshop Automation With Python</a></h2>
-          <h5>● Python ● win32client</h5>
-          <h6>Duration : 1-2 weeks</h6>
-          <br>
-          <p class="paragraph">One of my friends needed to make 200-300's of t-shirt mockups for a company in which
-            she was working as an intern. I made a python script that automates the process of creating the mockups.
-            The program picks a random template from a folder and uses photoshop to paste random png images on the
-            t-shirt. The program also creates a folder with the t-shirt mockups and saves the images in it. It saved
-            alot of time and effort. It takes about 10-15 minutes to create 100 different mockups.
-          </p>
-          <center>
-            <h6>The result</h6>
-          </center>
-          <video width="1152" height="648" autoplay muted loop>
-            <source src="media/psAutomation.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
-        </div>
-        <div>
-          <h2>Football Transfers Data Visualization</h2>
-          <h5>● Python ● matplotlib</h5>
-          <h6>Duration : 2 days</h6>
-          <br>
-          <p class="paragraph">I wanted to try out some data visualization techniques. I made a python script that
-            reads the data from a dictionary and plots the data in a graph. The data is from the football transfers
-            wikipedia page. It shows the top transfers made by the top clubs and leagues ever. This graph shows which
-            leagues and clubs around the word make the biggest transfers. 
-          </p>
-          <img width="1152" height="586.2" src="media/leaguesAndClubs.png"></img>
-          <br>
-          <br>
-          <img width="1152" height="586.2" src="media/leagues.png"></img>
-          <br>
-          <br>
-        </div>
-        <h1 class="headings"><b>CERTIFICATIONS/INTERNSHIPS</b></h1>
-        <div>
-          <h2>Smart India Hackathon 2020</h2>
-          <h5> ● GIS ● Mapping ● Android ● Java</h5>
-          <h6>Duration : 3 months</h6>
-          <br>
-          <p class="paragraph"> Smart India Hackathon - 2020. As the finalists, we also got to talk with the Prime
-            Minister of India, Mr Narendra Modi. The project helped in mapping telecom towers and track the n most
-            nearest towers according to one's location. I was responsible for the android app development. I also
-            assisted in mapping of the data in GIS software to help create understanding of the data. It would be also
-            useful for Public Government authorities. They can use this information to facilitate Eservices and to
-            provide coverage in Telecom uncovered areas.
-          </p>
-          <a href="media/SIH 2020.pdf" target="_blank">Finalists Certificate</a><br>
-          <video width="1152" height="648" controls muted loop>
-            <source src="media/sih.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
-        </div>
-        <div>
-          <h2>EveryBlock Studio, Game Developer</h2>
-          <h5> ● Python ● PyBullet Engine ● Physics</h5>
-          <h6>Duration : 3 months</h6>
-          <br>
-          <p class="paragraph"> I was part of the project titled "Lifeness.AI" from October 2020 to December 2020 at
-            Everyblock Studio, Rio de Janeiro, Brazil. In the course of the project, which involves game development and
-            blockchain. I assisted the team to develop one of the main components of the game, working in a
-            collaborative and organized manner even remotely.
-          </p>
-          <a href="media/EBS.pdf" target="_blank">EBS Certificate</a><br>
-          <a href="https://everyblock.studio/" target="_blank">EBS's Website</a><br>
-          <br>
-          <br>
-        </div>
-        <div>
-          <h2>Android App for Wireless Stethoscope</h2>
-          <h5> ● Java ● Firebase ● Bluetooth ● Byte Serialization ● UI/UX Design</h5>
-          <h6>Duration : 8 months</h6>
-          <a href="index.html#cibiod">Scroll to this project</a><br>
-          <br>
-          <br>
-        </div>
-        <h1 class="headings"><b>GRAPHIC DESIGN</b></h1>
-        <h6>Intermediate Skills of Adobe Photoshop, Adobe Illustrator, Premier Pro and Blender 3d</h6>
-        <div>
-          <h2>BLENDER</h2>
-          <p style="font-size: 10px"><i>Sound On</i></p>
-          <video width="1152" height="648" autoplay muted controls loop>
-            <source src="media/blenderAnim.mp4" type="video/mp4">
-          </video>
-          <video width="1152" height="648" autoplay muted loop>
-            <source src="media/Blender Compilation.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
-        </div>
-        <div>
-          <h2>Photoshop/Illustrator</h2>
-          <video width="1152" height="648" autoplay muted loop>
-            <source src="media/Illustrations.mp4" type="video/mp4">
-          </video>
-          <video width="1152" autoplay muted loop>
-            <source src="media/PosterCompilation.mp4" type="video/mp4">
-          </video>
-          <br>
-          <br>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseFour">
+                  POCKET TANKS 3D
+                  <h5> ● C# ● Blender ● Photoshop ● Particle Systems </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 2 months</h3>
+                </center>
+                <p class="paragraph">In 2017, this was my <b><u>first ever project</b></u>. I first applied my coding
+                  and 3d modeling skills on this tank battle game. I couldn't finish the game due to college schedule
+                  and study but it was a <b><u>great learning experience</b></u>. I also learned how shaders and
+                  materials work in 3d in unity and blender.
+                </p>
+                <video width="1152" height="648" autoplay muted loop>
+                  <source src="media/PocketTanks3d.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <div name="Android Java">
+        <br>
+        <h1 class="headings"><b>ANDROID JAVA</b></h1>
+        <br>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseFive">
+                  ANDROID APP FOR WIRELESS STETHOSCOPE
+                  <h5> ● Java ● Firebase ● Bluetooth ● Byte Serialization ● UI/UX Design
+                  </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 8 months</h3>
+                </center>
+                <p class="paragraph">This is my biggest project that I have ever undertaken. I have made an app that
+                  can
+                  connect to a wireless stethoscope and send the data to the app. The app can also send the data back
+                  to
+                  the
+                  stethoscope for communication. The app can also save the data to the cloud for future use. It uses
+                  Firebase
+                  for backend and Bluetooth for communication. <br>
+                  Made this app as the only full stack developer in the software team and had to work in unison with
+                  the
+                  hardware team. Learnt about how wav files work and how to encrypt and decrypt data for optimal
+                  communication
+                  via Bluetooth.
+                </p>
+                <a href="stetho.html" target="_blank">More Details</a><br>
+                <a href="media/CIBIOD.jpeg" target="_blank">Internship Certificate</a><br>
+                <video width="320" height="640" autoplay muted loop controls>
+                  <source src="media/stetho.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseSix">
+                  DOCUMENT OCR
+                  <h5> ● Java ● Firebase ● ML Kit Text Recognition </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 2 weeks</h3>
+                </center>
+                <p class="paragraph">This is a project that I have done for the purpose of learning how to use ML Kit. I
+                  have made a document OCR app that can recognize a person's document number from an image. The app uses
+                  Firebase for backend and ML Kit for text recognition. It can currently recognize a document number
+                  from
+                  aadhar card and pan card and add these details to an excel sheet for further use.
+                </p>
+                <video width="320" height="640" autoplay muted loop controls>
+                  <source src="media/document OCR.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseSeven">
+                  IMAGE TO ASCII ART
+                  <h5> ● Java ● Image Processing ● Excel File Processing </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 1 week</h3>
+                </center>
+                <p class="paragraph"> This app can convert an image to ASCII characters. These ASCII characters can be
+                  used to create a custom image. This app is made using Java and Image Processing. The image can be
+                  shared to other apps too.
+                </p>
+                <video width="320" height="640" autoplay muted loop>
+                  <source src="media/ascii.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div name="Flutter">
+        <br>
+        <h1 class="headings"><b>FLUTTER</b></h1>
+        <br>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseEight">
+                  CRYPTOCURRENCY SHARE MANAGER
+                  <h5>● Dart ● Cloud Firestore ● Firebase Hosting </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 2-3 weeks</h3>
+                </center>
+                <p class="paragraph">A website was needed to manage the cryptocurrency shares. The website was built
+                  using
+                  Flutter, Dart and Firebase. A lot of people had there shares in one portfolio and it was difficult to
+                  manage
+                  and tell everyone's profit and loss. So this was the solution that automatically divides the shares
+                  based
+                  on
+                  their percentage. <br> The web app has regular 50-100 visits per day for now and has a sleek and clean
+                  design.
+                  It is a real time application that keeps on updating every second. It can also show the profit and
+                  loss in
+                  different currencies.
+                </p>
+                <a href="https://purple-crypto.web.app/#/" target="_blank">Purple Crypto Website</a>
+                <br>
+                <p style="font-size: 10px"><i>Ignore the losses :-(</i></p>
+                <br>
+                <img src="media/PurpleCryptoSS.png" alt="image of project1" width="1150" height="600">
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseNine">
+                  CUSTOM REDDIT FEED
+                  <h5>● Dart ● Python ● Flask ● API ● PostgreSQL </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseNine" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 1-2 months</h3>
+                </center>
+                <p class="paragraph">January of 2021 I was looking for a new way to get my daily news and memes feed. I
+                  recently learnt Flutter and wanted to make more of it. So, I decided to make a custom news feed that
+                  shows the top posts from Reddit. The app is built using Python, Flask and API. The server refreshes
+                  everyday at 4 o'clock in the morning. The server side details is in the python section of this page.
+                  There are plans to also include Instagram feed too.<br>
+                  The design is sleek and futuristic. The UI inspiration is from Tinder. It is currently under
+                  development and needs more polishing.<br><br>
+                  The backend server is written in Python and uses Flask for the backend. The server is hosted on AWS
+                  and uses PostgreSQL for the database. The server is responsible for fetching the data from the Reddit
+                  API and storing it in the database for the app to use. <br>
+                </p>
+                <video width="360" height="640" autoplay muted loop>
+                  <source src="media/PurpleGram1.mp4" type="video/mp4">
+                </video>
+                <video width="320" height="640" autoplay muted loop>
+                  <source src="media/PurpleGram2.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseTen">
+                  COOPER MESSENGER (AUTOMATIC MESSAGING)
+                  <h5>● Dart ● Android Java ● Android Alarms </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 2-3 days</h3>
+                </center>
+                <p class="paragraph">A small app that sends you reminders in the form of notifications to send messages
+                  to someone on a certain day/time. It can automatically type out a random message and send its intent
+                  to whatsapp. The user just has to click on the notification and it will send the message. The user can
+                  save their friends' nicknames and their phone numbers and the type of random messages you want to
+                  send. <br>
+                  Here is an example usecase where the app sends you a notification to send good morning wishes to
+                  someone.
+                </p>
+                <video width="320" height="640" autoplay muted loop controls>
+                  <source src="media/PurpleMessenger1.mp4" type="video/mp4">
+                </video>
+                <iframe style="width: 320px; height:640px" src="media/PurpleMessengerSS.jpg"></iframe>
+                <iframe style="width: 320px; height:640px" src="media/PurpleMessengerSS2.jpg"></iframe>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div name="Python">
+        <br>
+        <h1 class="headings"><b>PYTHON</b></h1>
+        <br>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseEleven">
+                  FLASK SERVER FOR REDDIT
+                  <h5>● Python ● Flask ● API ● Praw Reddit Api ● PostgreSQL </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseEleven" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 1-2 months</h3>
+                </center>
+                <p class="paragraph">I made a custom flask server for loading the data from the Reddit API and storing
+                  it in a PostgreSQL database. The server is going to be hosted on AWS and uses PostgreSQL for the
+                  database. The server is also responsible for sending the data to the frontend. The frontend is built
+                  using Flutter.
+                </p>
+                <a href="index.html#reddit">Scroll to the flutter project</a>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseTwelve">
+                  MOCKUP PHOTOSHOP AUTOMATION WITH PYTHON
+                  <h5>● Python ● pywin32client ● Photoshop </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseTwelve" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 1-2 weeks</h3>
+                </center>
+                <p class="paragraph">One of my friends needed to make 200-300's of t-shirt mockups for a company in
+                  which
+                  she was working as an intern. I made a python script that automates the process of creating the
+                  mockups.
+                  The program picks a random template from a folder and uses photoshop to paste random png images on the
+                  t-shirt. The program also creates a folder with the t-shirt mockups and saves the images in it. It
+                  saved
+                  alot of time and effort. It takes about 10-15 minutes to create 100 different mockups.
+                </p>
+                <center>
+                  <h6>The result</h6>
+                </center>
+                <video width="1152" height="648" autoplay muted loop>
+                  <source src="media/psAutomation.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseThirteen">
+                  FOOTBALL TRANSFERS DATA VISUALIZATION
+                  <h5>● Python ● matplotlib </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseThirteen" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 2 days</h3>
+                </center>
+                <p class="paragraph">I wanted to try out some data visualization techniques. I made a python script that
+                  reads the data from a dictionary and plots the data in a graph. The data is from the football
+                  transfers wikipedia page. It shows the top transfers made by the top clubs and leagues ever. This
+                  graph shows which leagues and clubs around the world make the biggest transfers.
+                </p>
+                <img width="1152" height="586.2" src="media/leaguesAndClubs.png"></img>
+                <br>
+                <br>
+                <img width="1152" height="586.2" src="media/leagues.png"></img>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div name="Certificate">
+        <br>
+        <h1 class="headings"><b>CERTIFICATIONS/INTERNSHIPS</b></h1>
+        <br>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseFourteen">
+                  SMART INDIA HACKATHON 2020
+                  <h5> ● GIS ● Mapping ● Android ● Java </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseFourteen" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 3 months</h3>
+                </center>
+                <p class="paragraph"> Smart India Hackathon - 2020. As the finalists, we also got to talk with the Prime
+                  Minister of India, Mr Narendra Modi. The project helped in mapping telecom towers and track the n most
+                  nearest towers according to one's location. I was responsible for the android app development. I also
+                  assisted in mapping of the data in GIS software to help create understanding of the data. It would be
+                  also useful for Public Government authorities. They can use this information to facilitate Eservices
+                  and to provide coverage in Telecom uncovered areas.
+                </p>
+                <a href="media/SIH 2020.pdf" target="_blank">Finalists Certificate</a><br>
+                <video width="1152" height="648" controls muted loop>
+                  <source src="media/sih.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseFiveteen">
+                  GAME DEVELOPER, EVERYBLOCK STUDIO
+                  <h5> ● Python ● PyBullet Engine ● Physics </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseFiveteen" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 3 months</h3>
+                </center>
+                <p class="paragraph"> I was part of the project titled "Lifeness.AI" from October 2020 to December 2020
+                  at Everyblock Studio, Rio de Janeiro, Brazil. In the course of the project, which involves game
+                  development and blockchain. I assisted the team to develop one of the main components of the game,
+                  working in a collaborative and organized manner even remotely.
+                </p>
+                <a href="media/EBS.pdf" target="_blank">EBS Certificate</a><br>
+                <a href="https://everyblock.studio/who-we-are" target="_blank">EBS's Website</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseSixteen">
+                  ANDROID APP FOR WIRELESS STETHOSCOPE
+                  <h5> ● Java ● Firebase ● Bluetooth ● Byte Serialization ● UI/UX Design </h5>
+                </a>
+              </div>
+            </div>
+            <div id="collapseSixteen" class="panel-collapse collapse">
+              <div class="panel-body">
+                <center>
+                  <h3>Duration : 8 months</h3>
+                </center>
+                <a href="index.html#cibiod">Scroll to this project</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div name="gd">
+        <br>
+        <h1 class="headings"><b>GRAPHIC DESIGN</b></h1>
+        <h6>Intermediate Skills of Adobe Photoshop, Adobe Illustrator, Premier Pro and Blender 3d</h6>
+        <br>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseSeventeen">
+                  BLENDER
+                </a>
+              </div>
+            </div>
+            <div id="collapseSeventeen" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p style="font-size: 10px"><i>Sound On</i></p>
+                <video width="1152" height="648" autoplay muted controls loop>
+                  <source src="media/blenderAnim.mp4" type="video/mp4">
+                </video>
+                <video width="1152" height="648" autoplay muted loop>
+                  <source src="media/Blender Compilation.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab">
+              <div class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseEighteen">
+                  PHOTOSHOP/ILLUSTRATOR
+                </a>
+              </div>
+            </div>
+            <div id="collapseEighteen" class="panel-collapse collapse">
+              <div class="panel-body">
+                <video width="1152" height="648" autoplay muted loop>
+                  <source src="media/Illustrations.mp4" type="video/mp4">
+                </video>
+                <video width="1152" autoplay muted loop>
+                  <source src="media/PosterCompilation.mp4" type="video/mp4">
+                </video>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
   </section>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-    crossorigin="anonymous"></script>
+
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+  <script src="./script.js"></script>
 </body>
 
 </html>
