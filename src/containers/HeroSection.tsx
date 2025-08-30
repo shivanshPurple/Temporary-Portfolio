@@ -7,7 +7,7 @@ const HeroSection = () => {
     <>
       <section
         id="home"
-        className="min-h-screen flex flex-col justify-center items-center text-center space-y-4"
+        className="min-h-screen flex flex-col justify-start items-center text-center space-y-4 pt-[30vh]"
       >
         <div className="w-300 h-60">
           <TextPressure
