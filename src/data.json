@@ -1,0 +1,256 @@
+{
+  "projects": [
+    {
+      "category": "UNITY",
+      "title": "REINFORCED LEARNING - PATH DETECTION",
+      "technologies": [
+        "C#",
+        "Reinforcement Learning",
+        "Neuro-Evolution of Augmenting Topologies (NEAT)",
+        "Car Physics"
+      ],
+      "duration": "4 months",
+      "description": "This was the project at the end of my first year in college. I game myself a task to design a path detection system for a car via reinforcement learning. After a lot of failed attempts in the first 2 months (mainly because I was using Unity's ML-Kit that was in beta at that time and less documentation), I finally managed to make it work. I used the NEAT algorithm to create a neural network that can detect the path. The neural network is completely written in C# by me. This neural network is trained using the Reinforcement Learning algorithm that means it learns from the mistakes it makes. The cars that makes least mistakes are the ones that are most likely to produce next generations of cars. These car reproduce and mutate to create new cars. This process is repeated for a certain number of generations. This is a very interesting project that I have done for a long time and learnt a lot from it. For example: I have learnt to ditch ideas that don't work even if I had invested a lot of time in them and try other ideas.",
+      "media": [{ "type": "video", "src": "media/mlpd.mp4" }],
+      "links": []
+    },
+    {
+      "category": "UNITY",
+      "title": "A PLATFORMER GAME (Gift for my boiiiiii <3)",
+      "technologies": [
+        "C#",
+        "Platformer",
+        "8-bit",
+        "Spritesheet handling",
+        "Story Design"
+      ],
+      "duration": "1 month",
+      "description": "I created a game for my boiiiiii for her birthday and Valentines week which falls in the same week. Its a story driven 8-bit platformer game with interactive dialogues throughout the whole game. Along with creating the 8 bit platformer for her, I also included real life presents that she couldn't open yet. And the presents were linked to the game but with a catch. Each level that she'd conquer, (with great effort, haha) she'd unlock a digit to the code on her hidden presents. But not so fast. Each level would be unlocked when two things were True simultaneously: The previous level is completed, and another day has started - ie. at 12 midnight. This ensured that when all the levels are completed one by one with 7 levels in total, and she's on the last level - the last one that will open on Valentine's day (cuz her birthday falls on valentines week), She'd unlock the last digit to the lock when opening the final chest, and then opening her presents irl with the grand completion of the game itself.",
+      "media": [{ "type": "video", "src": "media/8bitgame.mp4" }],
+      "links": []
+    },
+    {
+      "category": "UNITY",
+      "title": "SUPERMARKET LOW POLY GAME",
+      "technologies": ["C#", "Blender", "Low Poly"],
+      "duration": "3 months",
+      "description": "This is my biggest game development project. The game is based on social distancing and Covid-19. The game is a simulation of a shopping mall and the player has to buy items but also not come near other people due to social distancing. The game is built using C# and Blender. I need a 3d designer to complete the map.",
+      "media": [
+        { "type": "video", "src": "media/shopid-19.mp4" },
+        { "type": "video", "src": "https://www.youtube.com/embed/rA-2zwDORm8" }
+      ],
+      "links": [
+        {
+          "text": "A detailed explanation can be found here.",
+          "url": "shopid-19.html"
+        }
+      ]
+    },
+    {
+      "category": "UNITY",
+      "title": "ONLINE MULTIPLAYER CARD GAME (STUPID CUPIDS)",
+      "technologies": [
+        "C#",
+        "Multiplayer-Syncing",
+        "MirrorNetworking",
+        "WebSockets",
+        "Photoshop"
+      ],
+      "duration": "2 months",
+      "description": "The objective of this is to make a card-turn based multiplayer game. The game is based on red flags(Card game). This game is currently under a lot of development. The video is really jittery because of multiple instances of the game running at the same time.",
+      "media": [{ "type": "video", "src": "media/StupidCupids.mp4" }],
+      "links": []
+    },
+    {
+      "category": "UNITY",
+      "title": "POCKET TANKS 3D",
+      "technologies": ["C#", "Blender", "Photoshop", "Particle Systems"],
+      "duration": "2 months",
+      "description": "In 2017, this was my first ever project. I first applied my coding and 3d modeling skills on this tank battle game. I couldn't finish the game due to college schedule and study but it was a great learning experience. I also learned how shaders and materials work in 3d in unity and blender.",
+      "media": [{ "type": "video", "src": "media/PocketTanks3d.mp4" }],
+      "links": []
+    },
+    {
+      "category": "ANDROID JAVA",
+      "title": "ANDROID APP FOR WIRELESS STETHOSCOPE",
+      "technologies": [
+        "Java",
+        "Firebase",
+        "Bluetooth",
+        "Byte Serialization",
+        "UI/UX Design"
+      ],
+      "duration": "8 months",
+      "description": "This is my biggest project that I have ever undertaken. I have made an app that can connect to a wireless stethoscope and send the data to the app. The app can also send the data back to the stethoscope for communication. The app can also save the data to the cloud for future use. It uses Firebase for backend and Bluetooth for communication. Made this app as the only full stack developer in the software team and had to work in unison with the hardware team. Learnt about how wav files work and how to encrypt and decrypt data for optimal communication via Bluetooth.",
+      "media": [{ "type": "video", "src": "media/stetho.mp4" }],
+      "links": [
+        { "text": "More Details", "url": "stetho.html" },
+        { "text": "Internship Certificate", "url": "media/CIBIOD.jpeg" }
+      ]
+    },
+    {
+      "category": "ANDROID JAVA",
+      "title": "DOCUMENT OCR",
+      "technologies": ["Java", "Firebase", "ML Kit Text Recognition"],
+      "duration": "2 weeks",
+      "description": "This is a project that I have done for the purpose of learning how to use ML Kit. I have made a document OCR app that can recognize a person's document number from an image. The app uses Firebase for backend and ML Kit for text recognition. It can currently recognize a document number from aadhar card and pan card and add these details to an excel sheet for further use.",
+      "media": [{ "type": "video", "src": "media/document OCR.mp4" }],
+      "links": []
+    },
+    {
+      "category": "ANDROID JAVA",
+      "title": "IMAGE TO ASCII ART",
+      "technologies": ["Java", "Image Processing", "Excel File Processing"],
+      "duration": "1 week",
+      "description": "This app can convert an image to ASCII characters. These ASCII characters can be used to create a custom image. This app is made using Java and Image Processing. The image can be shared to other apps too.",
+      "media": [{ "type": "video", "src": "media/ascii.mp4" }],
+      "links": []
+    },
+    {
+      "category": "FLUTTER",
+      "title": "CRYPTOCURRENCY SHARE MANAGER",
+      "technologies": ["Dart", "Cloud Firestore", "Firebase Hosting"],
+      "duration": "2-3 weeks",
+      "description": "A website was needed to manage the cryptocurrency shares. The website was built using Flutter, Dart and Firebase. A lot of people had there shares in one portfolio and it was difficult to manage and tell everyone's profit and loss. So this was the solution that automatically divides the shares based on their percentage. The web app has regular 50-100 visits per day for now and has a sleek and clean design. It is a real time application that keeps on updating every second. It can also show the profit and loss in different currencies.",
+      "media": [{ "type": "image", "src": "media/PurpleCryptoSS.png" }],
+      "links": [
+        {
+          "text": "Purple Crypto Website",
+          "url": "https://purple-crypto.web.app/#/"
+        }
+      ]
+    },
+    {
+      "category": "FLUTTER",
+      "title": "CUSTOM REDDIT FEED",
+      "technologies": ["Dart", "Python", "Flask", "API", "PostgreSQL"],
+      "duration": "1-2 months",
+      "description": "January of 2021 I was looking for a new way to get my daily news and memes feed. I recently learnt Flutter and wanted to make more of it. So, I decided to make a custom news feed that shows the top posts from Reddit. The app is built using Python, Flask and API. The server refreshes everyday at 4 o'clock in the morning. The server side details is in the python section of this page. There are plans to also include Instagram feed too. The design is sleek and futuristic. The UI inspiration is from Tinder. It is currently under development and needs more polishing. The backend server is written in Python and uses Flask for the backend. The server is hosted on AWS and uses PostgreSQL for the database. The server is responsible for fetching the data from the Reddit API and storing it in the database for the app to use.",
+      "media": [
+        { "type": "video", "src": "media/PurpleGram1.mp4" },
+        { "type": "video", "src": "media/PurpleGram2.mp4" }
+      ],
+      "links": [
+        { "text": "Scroll to the flutter project", "url": "index.html#reddit" }
+      ]
+    },
+    {
+      "category": "FLUTTER",
+      "title": "COOPER MESSENGER (AUTOMATIC MESSAGING)",
+      "technologies": ["Dart", "Android Java", "Android Alarms"],
+      "duration": "2-3 days",
+      "description": "A small app that sends you reminders in the form of notifications to send messages to someone on a certain day/time. It can automatically type out a random message and send its intent to whatsapp. The user just has to click on the notification and it will send the message. The user can save their friends' nicknames and their phone numbers and the type of random messages you want to send. Here is an example usecase where the app sends you a notification to send good morning wishes to someone.",
+      "media": [
+        { "type": "video", "src": "media/PurpleMessenger1.mp4" },
+        { "type": "image", "src": "media/PurpleMessengerSS.jpg" },
+        { "type": "image", "src": "media/PurpleMessengerSS2.jpg" }
+      ],
+      "links": []
+    },
+    {
+      "category": "PYTHON",
+      "title": "FLASK SERVER FOR REDDIT",
+      "technologies": [
+        "Python",
+        "Flask",
+        "API",
+        "Praw Reddit Api",
+        "PostgreSQL"
+      ],
+      "duration": "1-2 months",
+      "description": "I made a custom flask server for loading the data from the Reddit API and storing it in a PostgreSQL database. The server is going to be hosted on AWS and uses PostgreSQL for the database. The server is also responsible for sending the data to the frontend. The frontend is built using Flutter.",
+      "media": [],
+      "links": [
+        { "text": "Scroll to the flutter project", "url": "index.html#reddit" }
+      ]
+    },
+    {
+      "category": "PYTHON",
+      "title": "MOCKUP PHOTOSHOP AUTOMATION WITH PYTHON",
+      "technologies": ["Python", "pywin32client", "Photoshop"],
+      "duration": "1-2 weeks",
+      "description": "One of my friends needed to make 200-300's of t-shirt mockups for a company in which she was working as an intern. I made a python script that automates the process of creating the mockups. The program picks a random template from a folder and uses photoshop to paste random png images on the t-shirt. The program also creates a folder with the t-shirt mockups and saves the images in it. It saved alot of time and effort. It takes about 10-15 minutes to create 100 different mockups.",
+      "media": [{ "type": "video", "src": "media/psAutomation.mp4" }],
+      "links": []
+    },
+    {
+      "category": "PYTHON",
+      "title": "FOOTBALL TRANSFERS DATA VISUALIZATION",
+      "technologies": ["Python", "matplotlib"],
+      "duration": "2 days",
+      "description": "I wanted to try out some data visualization techniques. I made a python script that reads the data from a dictionary and plots the data in a graph. The data is from the football transfers wikipedia page. It shows the top transfers made by the top clubs and leagues ever. This graph shows which leagues and clubs around the world make the biggest transfers.",
+      "media": [
+        { "type": "image", "src": "media/leaguesAndClubs.png" },
+        { "type": "image", "src": "media/leagues.png" }
+      ],
+      "links": []
+    },
+    {
+      "category": "CERTIFICATIONS/INTERNSHIPS",
+      "title": "SMART INDIA HACKATHON 2020",
+      "technologies": ["GIS", "Mapping", "Android", "Java"],
+      "duration": "3 months",
+      "description": "Smart India Hackathon - 2020. As the finalists, we also got to talk with the Prime Minister of India, Mr Narendra Modi. The project helped in mapping telecom towers and track the n most nearest towers according to one's location. I was responsible for the android app development. I also assisted in mapping of the data in GIS software to help create understanding of the data. It would be also useful for Public Government authorities. They can use this information to facilitate Eservices and to provide coverage in Telecom uncovered areas.",
+      "media": [{ "type": "video", "src": "media/sih.mp4" }],
+      "links": [
+        { "text": "Finalists Certificate", "url": "media/SIH 2020.pdf" }
+      ]
+    },
+    {
+      "category": "CERTIFICATIONS/INTERNSHIPS",
+      "title": "GAME DEVELOPER, EVERYBLOCK STUDIO",
+      "technologies": ["Python", "PyBullet Engine", "Physics"],
+      "duration": "3 months",
+      "description": "I was part of the project titled \"Lifeness.AI\" from October 2020 to December 2020 at Everyblock Studio, Rio de Janeiro, Brazil. In the course of the project, which involves game development and blockchain. I assisted the team to develop one of the main components of the game, working in a collaborative and organized manner even remotely.",
+      "media": [],
+      "links": [
+        { "text": "EBS Certificate", "url": "media/EBS.pdf" },
+        {
+          "text": "EBS's Website",
+          "url": "https://everyblock.studio/who-we-are"
+        }
+      ]
+    },
+    {
+      "category": "CERTIFICATIONS/INTERNSHIPS",
+      "title": "ANDROID APP FOR WIRELESS STETHOSCOPE",
+      "technologies": [
+        "Java",
+        "Firebase",
+        "Bluetooth",
+        "Byte Serialization",
+        "UI/UX Design"
+      ],
+      "duration": "8 months",
+      "description": "This is a duplicate entry for the Android project already listed above.",
+      "media": [],
+      "links": [
+        { "text": "Scroll to this project", "url": "index.html#cibiod" }
+      ]
+    },
+    {
+      "category": "GRAPHIC DESIGN",
+      "title": "BLENDER",
+      "technologies": [],
+      "duration": "",
+      "description": "",
+      "media": [
+        { "type": "video", "src": "media/blenderAnim.mp4" },
+        { "type": "video", "src": "media/Blender Compilation.mp4" }
+      ],
+      "links": []
+    },
+    {
+      "category": "GRAPHIC DESIGN",
+      "title": "PHOTOSHOP/ILLUSTRATOR",
+      "technologies": [],
+      "duration": "",
+      "description": "",
+      "media": [
+        { "type": "video", "src": "media/Illustrations.mp4" },
+        { "type": "video", "src": "media/PosterCompilation.mp4" }
+      ],
+      "links": []
+    }
+  ]
+}
