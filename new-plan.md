@@ -30,18 +30,18 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
 ### 1. Global: Navigation + Cursor + Base FX
 - **Top Navigation**: Components/Gooey Nav for a playful sticky nav (Home, Projects, Categories, Design, Certificates, Contact)
 - **Quick Access Dock** (desktop only): Components/Dock for category jump shortcuts
-- **Cursor Effects**: Animations/Blob Cursor (or Animations/Target Cursor). Respect prefers-reduced-motion.
+- **Cursor Effects**: Animations/Fluid Glass. Respect prefers-reduced-motion.
 
 ### 2. Hero/Intro (replaces old title area)
-- **Background**: Backgrounds/Aurora (primary) + subtle Backgrounds/Dark Veil overlay for contrast
+- **Background**: Backgrounds/Dark Veil (primary background)
 - **Title Text**: Text Animations/Split Text for "Shivansh Saini"
-- **Subtitle**: Text Animations/Shiny Text or Gradient Text for the single-line intro
+- **Subtitle**: Text Animations/Shiny Text for the single-line intro
 - **Micro-interactions**: Animations/Glare Hover on the portrait card
 - **Optional**: Animations/Click Spark for celebratory clicks on CTA buttons
 
 ### 3. About Me spotlight
 - **Card**: Components/Spotlight Card housing portrait + short bio + CTA anchors
-- **Background**: Backgrounds/Beams or Light Rays (very low intensity)
+- **Background**: Backgrounds/Beams (very low intensity)
 - **Text Accents**: Text Animations/True Focus for a single emphasized sentence
 
 ### 4. Featured Projects (carousel)
@@ -58,18 +58,17 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
   - Hover image fx: Animations/Image Trail on cursor move in the grid area (optional, desktop)
 - **Scroll-in FX**: Text Animations/Scroll Reveal for section headings; Animations/Fade Content for card batches
 - **Section Background by Category** (when a filter is active):
-  - Unity: Backgrounds/Threads or Grid Distortion
-  - Android Java: Backgrounds/Grid Motion
-  - Flutter: Backgrounds/Liquid Chrome or Waves
+  - Unity: Backgrounds/Threads
+  - Android Java: Backgrounds/Orb
+  - Flutter: Backgrounds/Liquid Chrome
   - Python: Backgrounds/Dot Grid
   - Graphic Design: Backgrounds/Silk
-  - Certifications: Backgrounds/Light Rays or Dither
+  - Certifications: Backgrounds/Dither
 
 ### 6. Project Details (modal + routed support)
-- **Container**: Components/Glass Surface or Fluid Glass as the modal shell
+- **Container**: Components/Glass Surface as the modal shell
 - **Media**:
   - Components/Carousel inside modal to flip through video/image assets
-  - For long-form media: Components/Rolling Gallery
 - **Content Layout**: Components/Scroll Stack for description sections, duration, tech chips, links
 - **Decorative motion**: Animations/Ribbons very subtle behind the modal (disabled on low-power)
 - **Accessibility**: close via ESC, backdrop click, and Close button
@@ -82,17 +81,17 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
 ### 8. Certifications/Experience
 - **Cards**: Components/Card Swap for front/back certificate info (front: title/duration; back: link actions)
 - **Download/View Link**: open PDFs (from media/)
-- **Background**: Backgrounds/Light Rays or Iridescence to differentiate from projects
+- **Background**: Backgrounds/Iridescence to differentiate from projects
 
 ### 9. Graphic Design Gallery
-- **Gallery**: Components/Circular Gallery or Rolling Gallery to show Blender/Illustrator reels
-- **Background**: Backgrounds/Orb or Aurora variant
+- **Gallery**: Components/Circular Gallery to show Blender/Illustrator reels
+- **Background**: Backgrounds/Orb
 - **Hover**: Animations/Glare Hover on thumbnails
 
 ### 10. Footer + Contact
 - **Marquee**: Text Animations/Scroll Velocity to cycle through key skills and roles
 - **Background**: Backgrounds/Dot Grid
-- **CTA Buttons**: Use Tailwind-styled buttons or Components/Dock for social/contact
+- **CTA Buttons**: Use Components/Dock for social/contact
 - **If adding a form later**: consider Forms library set (plain CSS in repo list); for now link to email/LinkedIn/GitHub
 
 ## Data and Integration Details
@@ -163,7 +162,7 @@ interface Project {
 ### Phase 1: Layout + Navigation
 
 - Build App layout with Gooey Nav and optional Dock
-- Add Aurora background and Split Text hero with subtitle
+- Add Dark Veil background and Split Text hero with subtitle
 - Wire reduced-motion to switch out backgrounds/cursor effects
 
 ### Phase 2: Data and Cards
@@ -175,12 +174,12 @@ interface Project {
 
 ### Phase 3: Project Details
 
-- Modal shell (Glass Surface / Fluid Glass) with Carousel/Rolling Gallery
+- Modal shell (Glass Surface) with Carousel
 - Scroll Stack content; deep linking /project/:slug
 
 ### Phase 4: Sections
 
-- About (Spotlight Card), Skills (Chroma Grid), Certifications (Card Swap), Graphic Design (Circular/Rolling Gallery)
+- About (Spotlight Card), Skills (Chroma Grid), Certifications (Card Swap), Graphic Design (Circular Gallery)
 - Footer marquee (Scroll Velocity) and links
 
 ### Phase 5: Polish & QA
