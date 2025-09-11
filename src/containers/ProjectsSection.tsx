@@ -252,7 +252,7 @@ const ProjectsSection = () => {
                         alt={project.title}
                         className="w-full h-auto max-h-[40vh] object-contain rounded"
                       />
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded transition-all duration-300 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-30 rounded transition-all duration-300 flex items-center justify-center">
                         <FiMaximize
                           className="text-white text-opacity-0 group-hover:text-opacity-100 transition-all duration-300"
                           size={24}
@@ -316,7 +316,7 @@ const ProjectsSection = () => {
                       >
                         <FiVideo className="text-white text-4xl" />
                       </div>
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded transition-all duration-300 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-30 rounded transition-all duration-300 flex items-center justify-center">
                         <FiMaximize
                           className="text-white text-opacity-0 group-hover:text-opacity-100 transition-all duration-300"
                           size={24}
