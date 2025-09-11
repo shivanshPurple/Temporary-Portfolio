@@ -402,6 +402,8 @@ Completed thumbnail generation for all video files using ffmpeg:
 - Vertically centered all media elements for improved presentation
 - Removed "Video: filename" labels beside thumbnails for cleaner display
 - Added subtle translucent grey background to video icons for better visibility
+- Fixed description area to reduce width instead of hiding when empty
+- Reset carousel index to 0 when filters are applied for better user experience
 
 ## Qwen Added Memories
 - I will automatically update the qwen.md file after every successful task completion without requiring manual prompting. This is now part of my standard workflow.
