@@ -177,14 +177,14 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
         </div>
       )}
       
-      {/* Autoplay indicator - shows on hover and is orange */}
+      {/* Autoplay indicator - shows at all times with color based on hover state */}
       {autoplay && (
-        <div className="absolute top-4 right-4 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="bg-orange-500 bg-opacity-90 px-2 py-1 rounded-full flex items-center">
+        <div className="absolute top-4 right-4 flex items-center transition-opacity duration-300">
+          <div className="bg-black bg-opacity-50 px-2 py-1 rounded-full flex items-center">
             {isPaused ? (
-              <FiPlay className="text-white" size={16} />
+              <FiPlay className="text-green-500" size={16} />
             ) : (
-              <FiPause className="text-white" size={16} />
+              <FiPause className="text-orange-500" size={16} />
             )}
           </div>
         </div>
