@@ -421,5 +421,11 @@ Configured thumbnail generation for Vercel deployments:
 - Created comprehensive documentation for Vercel deployment (THUMBNAIL_VERCEL.md)
 - Added API endpoint for potential future serverless thumbnail generation
 
+## Bug Fixes
+
+Resolved several issues in the portfolio:
+- Fixed FiGamepad icon error in About section by replacing with available FiCpu icon
+- Fixed carousel pause/play functionality on mouse enter/exit by improving hover detection and autoplay indicator visibility
+
 ## Qwen Added Memories
 - I will automatically update the qwen.md file after every successful task completion without requiring manual prompting. This is now part of my standard workflow.
