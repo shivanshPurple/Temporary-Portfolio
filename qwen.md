@@ -412,5 +412,14 @@ Enhanced portfolio content with more detailed sections:
 - Created comprehensive About Me section with skills and background information
 - Updated Contact section with Instagram handle (@shivansh-purple) and email (shivanshsaini17@gmail.com)
 
+## Vercel Deployment
+
+Configured thumbnail generation for Vercel deployments:
+- Created build-time thumbnail generation script that runs during Vercel deployment
+- Added prebuild script to package.json to automatically attempt thumbnail generation
+- Provided fallback instructions for environments without ffmpeg
+- Created comprehensive documentation for Vercel deployment (THUMBNAIL_VERCEL.md)
+- Added API endpoint for potential future serverless thumbnail generation
+
 ## Qwen Added Memories
 - I will automatically update the qwen.md file after every successful task completion without requiring manual prompting. This is now part of my standard workflow.
