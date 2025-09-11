@@ -1,6 +1,6 @@
-import TextPressure from "../blocks/TextAnimations/TextPressure/TextPressure";
-import ShinyText from "../blocks/TextAnimations/ShinyText/ShinyText";
-import CurvedLoop from "../blocks/TextAnimations/CurvedLoop/CurvedLoop";
+import TextPressure from "../components/TextPressure/TextPressure";
+import ShinyText from "../components/ShinyText/ShinyText";
+import CurvedLoop from "../components/CurvedLoop/CurvedLoop";
 
 const HeroSection = () => {
   return (
@@ -17,7 +17,7 @@ const HeroSection = () => {
         </div>
         <ShinyText
           speed={3}
-          text="I spit out vide coded AI slop, but sometimes I do develop some good stuff on my own"
+          text="This is a temporary portfolio. I am making a real one inspired by Bruno Simon."
         />
       </section>
       <div className="absolute top-[15vh] left-0 w-full flex justify-center pointer-events-none">

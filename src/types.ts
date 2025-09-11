@@ -1,6 +1,7 @@
 export interface Media {
-  type: 'image' | 'video';
+  type: "image" | "video";
   src: string;
+  poster?: string; // Added: Optional thumbnail image path for video previews
 }
 
 export interface Link {

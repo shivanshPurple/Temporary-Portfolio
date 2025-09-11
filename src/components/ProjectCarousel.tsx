@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { FiChevronLeft, FiChevronRight, FiPlay, FiPause } from 'react-icons/fi';
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { FiChevronLeft, FiChevronRight, FiPlay, FiPause } from "react-icons/fi";
 
 interface ProjectCarouselItem {
   id: number;
@@ -12,22 +12,27 @@ interface ProjectCarouselProps {
   autoplay?: boolean;
   autoplayDelay?: number;
   pauseOnHover?: boolean;
+  pauseOnModal?: boolean;
+  isModalOpen?: boolean;
   loop?: boolean;
   resetIndex?: boolean;
   onResetIndex?: () => void;
 }
 
-const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ 
-  items, 
-  autoplay = false, 
-  autoplayDelay = 3000, 
-  pauseOnHover = true, 
+const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
+  items,
+  autoplay = false,
+  autoplayDelay = 3000,
+  pauseOnHover = true,
+  pauseOnModal = false,
+  isModalOpen = false,
   loop = true,
   resetIndex = false,
-  onResetIndex
+  onResetIndex,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Reset index when resetIndex prop changes
@@ -40,49 +45,67 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
     }
   }, [resetIndex, onResetIndex]);
 
+  // Handle modal pause
+  useEffect(() => {
+    if (pauseOnModal) {
+      if (isModalOpen) {
+        setIsPaused(true);
+      } else if (!isHovering) {
+        setIsPaused(false);
+      }
+    }
+  }, [pauseOnModal, isModalOpen, isHovering]);
+
   // Autoplay functionality
   useEffect(() => {
-    console.log('Autoplay useEffect triggered, autoplay:', autoplay, 'isPaused:', isPaused);
+    console.log(
+      "Autoplay useEffect triggered, autoplay:",
+      autoplay,
+      "isPaused:",
+      isPaused
+    );
     if (!autoplay || isPaused) {
-      console.log('Autoplay stopped or paused');
+      console.log("Autoplay stopped or paused");
       return;
     }
-    
-    console.log('Starting autoplay interval with delay:', autoplayDelay);
+
+    console.log("Starting autoplay interval with delay:", autoplayDelay);
     const interval = setInterval(() => {
-      console.log('Autoplay interval triggered, current index:', currentIndex);
-      setCurrentIndex(prev => {
+      console.log("Autoplay interval triggered, current index:", currentIndex);
+      setCurrentIndex((prev) => {
         if (loop) {
           const newIndex = (prev + 1) % items.length;
-          console.log('Moving to next item, new index:', newIndex);
+          console.log("Moving to next item, new index:", newIndex);
           return newIndex;
         } else {
           const newIndex = prev < items.length - 1 ? prev + 1 : prev;
-          console.log('Moving to next item (no loop), new index:', newIndex);
+          console.log("Moving to next item (no loop), new index:", newIndex);
           return newIndex;
         }
       });
     }, autoplayDelay);
-    
+
     return () => {
-      console.log('Clearing autoplay interval');
+      console.log("Clearing autoplay interval");
       clearInterval(interval);
     };
   }, [autoplay, autoplayDelay, isPaused, items.length, loop]);
 
   // Handle hover pause
   const handleMouseEnter = () => {
-    console.log('Mouse entered carousel, pauseOnHover:', pauseOnHover);
+    console.log("Mouse entered carousel, pauseOnHover:", pauseOnHover);
+    setIsHovering(true);
     if (pauseOnHover) {
-      console.log('Pausing carousel');
+      console.log("Pausing carousel");
       setIsPaused(true);
     }
   };
 
   const handleMouseLeave = () => {
-    console.log('Mouse left carousel, pauseOnHover:', pauseOnHover);
-    if (pauseOnHover) {
-      console.log('Resuming carousel');
+    console.log("Mouse left carousel, pauseOnHover:", pauseOnHover);
+    setIsHovering(false);
+    if (pauseOnHover && !(pauseOnModal && isModalOpen)) {
+      console.log("Resuming carousel");
       setIsPaused(false);
     }
   };
@@ -117,7 +140,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
   }
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="relative w-full h-full overflow-hidden rounded-xl group"
       onMouseEnter={handleMouseEnter}
@@ -135,7 +158,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
             className="w-full h-full"
           >
             {items[currentIndex].content}
-            
+
             {/* Navigation arrows - inside the animated container so they fade with content */}
             {items.length > 1 && (
               <>
@@ -158,7 +181,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
           </motion.div>
         </AnimatePresence>
       </div>
-      
+
       {/* Dots indicator */}
       {items.length > 1 && (
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
@@ -168,23 +191,23 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all ${
                 index === currentIndex
-                  ? 'bg-white scale-125'
-                  : 'bg-gray-500 hover:bg-gray-300'
+                  ? "bg-white scale-125"
+                  : "bg-gray-500 hover:bg-gray-300"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
       )}
-      
+
       {/* Autoplay indicator - shows at all times with action-indicating icons */}
       {autoplay && (
         <div className="absolute top-4 right-4 flex items-center transition-opacity duration-300">
           <div className="bg-black bg-opacity-50 px-2 py-1 rounded-full flex items-center">
             {isPaused ? (
-              <FiPlay className="text-green-500" size={16} />
-            ) : (
               <FiPause className="text-orange-500" size={16} />
+            ) : (
+              <FiPlay className="text-green-500" size={16} />
             )}
           </div>
         </div>

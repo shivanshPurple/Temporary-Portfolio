@@ -408,11 +408,13 @@ Completed thumbnail generation for all video files using ffmpeg:
 
 ## Media File Cleanup
 
-Identified and removed unreferenced media files:
+Identified and removed duplicate and unreferenced media files:
 - Created a script to compare media files with references in data.json
 - Identified 2 unreferenced files: pic.jpeg and shivansh.png
 - Removed these files from both media/ and public/media/ directories
 - Maintained all thumbnail files as they are properly referenced in data.json
+- Removed duplicate media directory that contained the same files as public/media
+- Organized media files to be in the correct location (public/media/) for Vite projects
 
 ## Content Updates
 

@@ -1,11 +1,13 @@
-import TargetCursor from "./blocks/Animations/TargetCursor/TargetCursor";
-import DarkVeil from "./blocks/Backgrounds/DarkVeil/DarkVeil";
-import Dock from "./blocks/Components/Dock/Dock";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import TargetCursor from "./components/TargetCursor/TargetCursor";
+import DarkVeil from "./components/DarkVeil/DarkVeil";
+import Dock from "./components/Dock/Dock";
 import { PrefsProvider, usePrefs } from "./context/PrefsContext";
 import { Handshake, House, Target, UserRound } from "lucide-react";
 import HeroSection from "./containers/HeroSection";
 import AboutSection from "./containers/AboutSection";
 import ProjectsSection from "./containers/ProjectsSection";
+import ProjectDetail from "./containers/ProjectDetail";
 import ContactSection from "./containers/ContactSection";
 
 function AppContent() {
@@ -61,26 +63,46 @@ function AppContent() {
         />
       </div>
 
-      {/* Hero Section */}
-      <HeroSection />
+      {/* Scroll container with snap points */}
+      <div className="snap-container snap-y snap-mandatory h-screen overflow-y-scroll">
+        <Routes>
+          <Route path="/" element={
+            <>
+              {/* Hero Section */}
+              <div className="snap-start">
+                <HeroSection />
+              </div>
 
-      {/* Projects Section */}
-      <ProjectsSection />
+              {/* Projects Section */}
+              <div className="snap-start">
+                <ProjectsSection />
+              </div>
 
-      {/* About Section */}
-      <AboutSection />
+              {/* About Section */}
+              <div className="snap-start">
+                <AboutSection />
+              </div>
 
-      {/* Contact Section */}
-      <ContactSection />
+              {/* Contact Section */}
+              <div className="snap-start">
+                <ContactSection />
+              </div>
+            </>
+          } />
+          <Route path="/project/:slug" element={<ProjectDetail />} />
+        </Routes>
+      </div>
     </div>
   );
 }
 
 function App() {
   return (
-    <PrefsProvider>
-      <AppContent />
-    </PrefsProvider>
+    <Router>
+      <PrefsProvider>
+        <AppContent />
+      </PrefsProvider>
+    </Router>
   );
 }
 
