@@ -37,6 +37,7 @@ const ProjectsSection = () => {
     media: Media;
     projectTitle: string;
   } | null>(null);
+  const [resetCarouselIndex, setResetCarouselIndex] = useState(false);
 
   useEffect(() => {
     // Extract unique categories
@@ -80,11 +81,15 @@ const ProjectsSection = () => {
     } else {
       setSelectedCategory(category);
     }
+    // Reset carousel index when filter is applied
+    setResetCarouselIndex(true);
   };
 
   // Clear category selection
   const clearCategorySelection = () => {
     setSelectedCategory(null);
+    // Reset carousel index when filter is cleared
+    setResetCarouselIndex(true);
   };
 
   // Close media modal
@@ -160,8 +165,9 @@ const ProjectsSection = () => {
     let mediaWidth = "w-1/2";
 
     if (!showDescription && showMedia) {
-      // No description, only media - give media full width
-      mediaWidth = "w-full";
+      // No description, only media - reduce description width and give more space to media
+      descriptionWidth = "w-1/6";
+      mediaWidth = "w-5/6";
     } else if (showDescription && !showMedia) {
       // Only description, no media - give description full width
       descriptionWidth = "w-full";
@@ -170,154 +176,155 @@ const ProjectsSection = () => {
 
     return (
       <div className="bg-gray-800 rounded-xl h-full flex">
-        {/* Left side - Description (conditionally shown) */}
-        {showDescription && (
-          <div className={descriptionWidth + " p-6 flex flex-col"}>
-            {/* Header with category and icon */}
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#060010] mr-3">
-                  {getCategoryIcon(project.category)}
-                </span>
-                <span className="px-3 py-1 bg-purple-600 text-white text-xs font-medium rounded-full">
-                  {project.category}
-                </span>
-              </div>
-              {project.duration && (
-                <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded flex items-center">
-                  <FiClock className="mr-1" />
-                  {project.duration}
-                </span>
-              )}
-            </div>
-
-            {/* Title */}
-            <h3 className="text-2xl font-bold text-white mb-3">
-              {project.title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-gray-300 mb-4 flex-grow">
-              {project.description}
-            </p>
-
-            {/* Technologies */}
-            <div className="mb-4">
-              <h4 className="font-semibold text-gray-200 mb-2">Technologies</h4>
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.slice(0, 8).map((tech, index) => (
-                  <span
-                    key={index}
-                    className="px-2 py-1 bg-gray-700 text-gray-200 text-xs rounded-full"
-                  >
-                    {tech}
+        {/* Left side - Description (always shown, but with reduced width when empty) */}
+        <div className={descriptionWidth + " p-6 flex flex-col"}>
+          {/* Only show content if there's a description */}
+          {showDescription && (
+            <>
+              {/* Header with category and icon */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#060010] mr-3">
+                    {getCategoryIcon(project.category)}
                   </span>
-                ))}
-                {project.technologies.length > 8 && (
-                  <span className="px-2 py-1 bg-gray-700 text-gray-200 text-xs rounded-full">
-                    +{project.technologies.length - 8} more
+                  <span className="px-3 py-1 bg-purple-600 text-white text-xs font-medium rounded-full">
+                    {project.category}
+                  </span>
+                </div>
+                {project.duration && (
+                  <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded flex items-center">
+                    <FiClock className="mr-1" />
+                    {project.duration}
                   </span>
                 )}
               </div>
-            </div>
 
-            {/* Links */}
-            {renderLinks(project.links)}
-          </div>
-        )}
+              {/* Title */}
+              <h3 className="text-2xl font-bold text-white mb-3">
+                {project.title}
+              </h3>
 
-        {/* Right side - Media (only show if media exists) */}
-        {showMedia && (
-          <div
-            className={
-              mediaWidth + " p-6 bg-gray-900 rounded-r-xl flex flex-col"
-            }
-          >
-            <h4 className="font-semibold text-gray-200 mb-4 flex items-center">
-              <FiImage className="mr-2" />
-              Media
-            </h4>
+              {/* Description */}
+              <p className="text-gray-300 mb-4 flex-grow">
+                {project.description}
+              </p>
 
-            <div className="flex-grow overflow-y-auto rounded-lg max-h-[50vh] flex flex-col items-center justify-center">
-              {project.media.map((media, index) => (
-                <div key={index} className="mb-4 flex justify-center">
-                  {media.type === "image" ? (
-                    <div
-                      className="relative cursor-pointer group flex justify-center"
-                      onClick={() => openMediaModal(media, project.title)}
+              {/* Technologies */}
+              <div className="mb-4">
+                <h4 className="font-semibold text-gray-200 mb-2">Technologies</h4>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.slice(0, 8).map((tech, index) => (
+                    <span
+                      key={index}
+                      className="px-2 py-1 bg-gray-700 text-gray-200 text-xs rounded-full"
                     >
-                      <img
-                        src={`/${media.src}`} // Fixed: Add leading '/' for public/ path
-                        alt={project.title}
-                        className="max-w-full max-h-[40vh] h-auto w-auto object-contain"
-                      />
-                    </div>
-                  ) : media.type === "video" ? (
-                    <div
-                      className="relative cursor-pointer group flex justify-center"
-                      onClick={() => openMediaModal(media, project.title)}
-                    >
-                      {/* Display thumbnail as image if available, otherwise show video */}
-                      {media.poster ? (
-                        <div className="relative">
-                          <img
-                            src={`/${media.poster}`}
-                            alt={`${project.title} thumbnail`}
-                            className="max-w-full max-h-[30vh] h-auto w-auto object-contain"
-                          />
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="bg-gray-500 bg-opacity-30 rounded-full p-2">
-                              <FiVideo className="text-white text-4xl opacity-80" />
-                            </div>
+                      {tech}
+                    </span>
+                  ))}
+                  {project.technologies.length > 8 && (
+                    <span className="px-2 py-1 bg-gray-700 text-gray-200 text-xs rounded-full">
+                      +{project.technologies.length - 8} more
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Links */}
+              {renderLinks(project.links)}
+            </>
+          )}
+        </div>
+
+        {/* Right side - Media (always shown, but only with content if media exists) */}
+        <div
+          className={
+            mediaWidth + " p-6 bg-gray-900 rounded-r-xl flex flex-col"
+          }
+        >
+          <h4 className="font-semibold text-gray-200 mb-4 flex items-center">
+            <FiImage className="mr-2" />
+            Media
+          </h4>
+
+          <div className="flex-grow overflow-y-auto rounded-lg max-h-[50vh] flex flex-col items-center justify-center">
+            {showMedia && project.media.map((media, index) => (
+              <div key={index} className="mb-4 flex justify-center">
+                {media.type === "image" ? (
+                  <div
+                    className="relative cursor-pointer group flex justify-center"
+                    onClick={() => openMediaModal(media, project.title)}
+                  >
+                    <img
+                      src={`/${media.src}`} // Fixed: Add leading '/' for public/ path
+                      alt={project.title}
+                      className="max-w-full max-h-[40vh] h-auto w-auto object-contain"
+                    />
+                  </div>
+                ) : media.type === "video" ? (
+                  <div
+                    className="relative cursor-pointer group flex justify-center"
+                    onClick={() => openMediaModal(media, project.title)}
+                  >
+                    {/* Display thumbnail as image if available, otherwise show video */}
+                    {media.poster ? (
+                      <div className="relative">
+                        <img
+                          src={`/${media.poster}`}
+                          alt={`${project.title} thumbnail`}
+                          className="max-w-full max-h-[30vh] h-auto w-auto object-contain"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="bg-gray-500 bg-opacity-30 rounded-full p-2">
+                            <FiVideo className="text-white text-4xl opacity-80" />
                           </div>
                         </div>
-                      ) : (
-                        <video
-                          src={`/${media.src}`}
-                          muted
-                          loop
-                          preload="auto"
-                          className="max-w-full max-h-[30vh] h-auto w-auto object-contain"
-                          onError={(e) => {
-                            const video = e.currentTarget as HTMLVideoElement;
-                            const fallback = video.parentElement?.querySelector(
-                              ".video-fallback"
-                            ) as HTMLElement;
-                            if (fallback) {
-                              video.style.display = "none";
-                              fallback.style.display = "flex";
-                            }
-                          }}
-                          onMouseEnter={(e) => {
-                            const video = e.currentTarget as HTMLVideoElement;
-                            video.play().catch(() => {});
-                          }}
-                          onMouseLeave={(e) => {
-                            const video = e.currentTarget as HTMLVideoElement;
-                            video.pause();
-                            video.currentTime = 0;
-                          }}
-                        />
-                      )}
-                      {/* Fallback div for thumbnail: Hidden by default */}
-                      <div
-                        className="thumbnail-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
-                      >
-                        <FiVideo className="text-white text-4xl" />
                       </div>
-                      {/* Fallback div for video: Hidden by default, shown only on load error */}
-                      <div
-                        className="video-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
-                      >
-                        <FiVideo className="text-white text-4xl" />
-                      </div>
+                    ) : (
+                      <video
+                        src={`/${media.src}`}
+                        muted
+                        loop
+                        preload="auto"
+                        className="max-w-full max-h-[30vh] h-auto w-auto object-contain"
+                        onError={(e) => {
+                          const video = e.currentTarget as HTMLVideoElement;
+                          const fallback = video.parentElement?.querySelector(
+                            ".video-fallback"
+                          ) as HTMLElement;
+                          if (fallback) {
+                            video.style.display = "none";
+                            fallback.style.display = "flex";
+                          }
+                        }}
+                        onMouseEnter={(e) => {
+                          const video = e.currentTarget as HTMLVideoElement;
+                          video.play().catch(() => {});
+                        }}
+                        onMouseLeave={(e) => {
+                          const video = e.currentTarget as HTMLVideoElement;
+                          video.pause();
+                          video.currentTime = 0;
+                        }}
+                      />
+                    )}
+                    {/* Fallback div for thumbnail: Hidden by default */}
+                    <div
+                      className="thumbnail-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
+                    >
+                      <FiVideo className="text-white text-4xl" />
                     </div>
-                  ) : null}
-                </div>
-              ))}
-            </div>
+                    {/* Fallback div for video: Hidden by default, shown only on load error */}
+                    <div
+                      className="video-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
+                    >
+                      <FiVideo className="text-white text-4xl" />
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     );
   };
@@ -373,6 +380,8 @@ const ProjectsSection = () => {
                 autoplayDelay={8000}
                 pauseOnHover={true}
                 loop={true}
+                resetIndex={resetCarouselIndex}
+                onResetIndex={() => setResetCarouselIndex(false)}
               />
             </div>
           ) : (
