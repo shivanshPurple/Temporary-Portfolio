@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a portfolio website built with React, TypeScript, and Vite. It showcases various projects organized by categories in an accordion-based layout.
+This is a portfolio website built with React, TypeScript, and Vite. It showcases various projects organized by categories in an accordion-based layout. All components have been reorganized from `src/blocks` to `src/components` for better maintainability.
 
 ## Architecture
 
@@ -12,7 +12,7 @@ This is a portfolio website built with React, TypeScript, and Vite. It showcases
 - **Animation**: Motion (for animations)
 - **Component Structure**:
   - `src/containers/` - Main page sections (Hero, Projects, About, Contact)
-  - `src/blocks/` - Reusable UI components
+  - `src/components/` - Reusable UI components
   - `src/context/` - React context providers
   - `src/assets/` - Static assets
 
@@ -20,7 +20,7 @@ This is a portfolio website built with React, TypeScript, and Vite. It showcases
 
 ### Accordion System
 
-- **Location**: `src/blocks/Components/Accordion/`
+- **Location**: `src/components/Accordion/`
 - **Files**:
   - `Accordion.tsx` - Main accordion container
   - `AccordionItem.tsx` - Individual accordion items
@@ -60,6 +60,7 @@ This is a portfolio website built with React, TypeScript, and Vite. It showcases
 4. **Media Support**: Displays images and videos for projects
 5. **Technology Tags**: Visual tags for technologies used in each project
 6. **External Links**: Links to project details, videos, and websites
+7. **Component Reorganization**: Moved all components from `src/blocks` to `src/components` for better organization
 
 ## Lessons Learned
 
@@ -77,6 +78,7 @@ This is a portfolio website built with React, TypeScript, and Vite. It showcases
 4. **Dark/Light Mode**: Implement theme switching
 5. **Performance**: Optimize media loading with lazy loading
 6. **Accessibility**: Improve keyboard navigation and screen reader support
+7. **Component Organization**: All components have been reorganized from `src/blocks` to `src/components` for better maintainability
 
 ## Upgrade Plan - React Portfolio Conversion
 
@@ -140,7 +142,7 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
   - Hover image fx: Animations/Image Trail on cursor move in the grid area (optional, desktop)
 - **Scroll-in FX**: Text Animations/Scroll Reveal for section headings; Animations/Fade Content for card batches
 - **Section Background by Category** (when a filter is active):
-  - Unity: Backgrounds/Threads
+  - Unity: Backgrounds/Hyperspeed
   - Android Java: Backgrounds/Orb
   - Flutter: Backgrounds/Liquid Chrome
   - Python: Backgrounds/Dot Grid
@@ -312,6 +314,7 @@ interface Project {
 - Pin exact version tags of react-bits components used
 - Tailwind config and plugin list documented
 - Component wrappers (e.g., SafeBackground) to centralize reduced-motion logic
+- All components have been reorganized from `src/blocks` to `src/components` for better maintainability
 
 #### Future Extensibility
 
@@ -323,3 +326,4 @@ interface Project {
 
 - Update qwen.md file after every successful task completion.
 - When doing git commit message, use the following format: "[qwen] feat|fix|docs|style|refactor|test|chore: <description>".
+- Note: All components have been reorganized from `src/blocks` to `src/components` for better maintainability.
