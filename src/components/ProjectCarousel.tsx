@@ -177,7 +177,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
         </div>
       )}
       
-      {/* Autoplay indicator - shows at all times with color based on hover state */}
+      {/* Autoplay indicator - shows at all times with action-indicating icons */}
       {autoplay && (
         <div className="absolute top-4 right-4 flex items-center transition-opacity duration-300">
           <div className="bg-black bg-opacity-50 px-2 py-1 rounded-full flex items-center">
