@@ -62,6 +62,13 @@ This is a portfolio website built with React, TypeScript, and Vite. It showcases
 6. **External Links**: Links to project details, videos, and websites
 7. **Component Reorganization**: Moved all components from `src/blocks` to `src/components` for better organization
 8. **Category-Specific Backgrounds**: Dynamic backgrounds that change based on the selected project category
+9. **Grid-Based Layout**: Replaced accordion with masonry grid layout for better visual presentation
+10. **Category Filtering**: Infinite menu for filtering projects by category
+11. **Enhanced Project Cards**: TiltedCard and SpotlightCard components for visually appealing project displays
+12. **Hover Effects**: GlareHover and ImageTrail components for interactive card effects
+13. **Project Detail Modal**: GlassSurface modal for detailed project information
+14. **Scroll Animations**: ScrollReveal and FadeContent for smooth content transitions
+15. **Tech Stack Visualization**: Folder component to showcase all technologies used
 
 ## Lessons Learned
 
@@ -81,6 +88,8 @@ This is a portfolio website built with React, TypeScript, and Vite. It showcases
 6. **Accessibility**: Improve keyboard navigation and screen reader support
 7. **Component Organization**: All components have been reorganized from `src/blocks` to `src/components` for better maintainability
 8. **Background Transitions**: Background transitions between categories could be further enhanced with more sophisticated animations
+9. **Image Trail Enhancement**: Implement more sophisticated ImageTrail effects on project cards
+10. **Advanced Filtering**: Add multi-category filtering and search functionality
 
 ## Upgrade Plan - React Portfolio Conversion
 
@@ -151,6 +160,8 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
   - Graphic Design: Backgrounds/Silk
   - Certifications: Backgrounds/Dither
 - **Enhanced UX**: Smooth transitions between category backgrounds with overlay for text readability
+- **Project Details**: Components/Glass Surface modal for detailed project information
+- **Tech Stack**: Components/Folder for visualizing all technologies used
 
 #### 6. Project Details (modal + routed support)
 
