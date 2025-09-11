@@ -406,6 +406,14 @@ Completed thumbnail generation for all video files using ffmpeg:
 - Reset carousel index to 0 when filters are applied for better user experience
 - Updated thumbnail generation to capture frames from the middle of videos instead of the beginning
 
+## Media File Cleanup
+
+Identified and removed unreferenced media files:
+- Created a script to compare media files with references in data.json
+- Identified 2 unreferenced files: pic.jpeg and shivansh.png
+- Removed these files from both media/ and public/media/ directories
+- Maintained all thumbnail files as they are properly referenced in data.json
+
 ## Content Updates
 
 Enhanced portfolio content with more detailed sections:
