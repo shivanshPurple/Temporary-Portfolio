@@ -28,7 +28,6 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
 ## Core UX Flow and Component Strategy
 
 ### 1. Global: Navigation + Cursor + Base FX
-- **Top Navigation**: Components/Gooey Nav for a playful sticky nav (Home, Projects, Categories, Design, Certificates, Contact)
 - **Quick Access Dock** (desktop only): Components/Dock for category jump shortcuts
 - **Cursor Effects**: Animations/Fluid Glass. Respect prefers-reduced-motion.
 
@@ -137,7 +136,7 @@ interface Project {
 
 ### Accessibility Features
 
-- Keyboard navigation: Gooey Nav focus rings, modal trap focus
+- Keyboard navigation: modal trap focus
 - Color contrast: ensure readable text over animated backgrounds (use Dark Veil overlays and backdrop blur)
 - Screen reader support: proper ARIA labels on interactive elements
 - Reduced motion: comprehensive support throughout
@@ -161,7 +160,7 @@ interface Project {
 
 ### Phase 1: Layout + Navigation
 
-- Build App layout with Gooey Nav and optional Dock
+- Build App layout with optional Dock
 - Add Dark Veil background and Split Text hero with subtitle
 - Wire reduced-motion to switch out backgrounds/cursor effects
 
@@ -190,7 +189,7 @@ interface Project {
 
 ## Exact Component-to-Section Mapping Reference
 
-| Section | Components Used | |---------|----------------| | Global | Gooey Nav, Dock, Blob Cursor/Target Cursor, Click Spark | | Hero | Aurora + Dark Veil; Split Text; Shiny/Gradient Text; Glare Hover | | About | Spotlight Card; Beams/Light Rays; True Focus | | Featured | Carousel; Glare Hover; Scroll Reveal | | Projects | Infinite Menu (filters); Masonry (grid); Tilted Card/Spotlight Card; Image Trail; Fade Content; Scroll Reveal | | Details | Glass Surface/Fluid Glass; Carousel/Rolling Gallery; Scroll Stack; Ribbons | | Skills | Chroma Grid; Variable Proximity | | Certifications | Card Swap; Light Rays/Iridescence | | Graphic Design | Circular Gallery/Rolling Gallery; Orb/Aurora variant | | Footer | Scroll Velocity; Dot Grid |
+| Section | Components Used | |---------|----------------| | Global | Dock, Blob Cursor/Target Cursor, Click Spark | | Hero | Aurora + Dark Veil; Split Text; Shiny/Gradient Text; Glare Hover | | About | Spotlight Card; Beams/Light Rays; True Focus | | Featured | Carousel; Glare Hover; Scroll Reveal | | Projects | Infinite Menu (filters); Masonry (grid); Tilted Card/Spotlight Card; Image Trail; Fade Content; Scroll Reveal | | Details | Glass Surface/Fluid Glass; Carousel/Rolling Gallery; Scroll Stack; Ribbons | | Skills | Chroma Grid; Variable Proximity | | Certifications | Card Swap; Light Rays/Iridescence | | Graphic Design | Circular Gallery/Rolling Gallery; Orb/Aurora variant | | Footer | Scroll Velocity; Dot Grid |
 
 ## Risks and Mitigations
 

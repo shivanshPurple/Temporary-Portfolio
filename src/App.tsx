@@ -1,6 +1,5 @@
 import TargetCursor from "./blocks/Animations/TargetCursor/TargetCursor";
 import DarkVeil from "./blocks/Backgrounds/DarkVeil/DarkVeil";
-import GooeyNav from "./blocks/Components/GooeyNav/GooeyNav";
 import Dock from "./blocks/Components/Dock/Dock";
 import { PrefsProvider, usePrefs } from "./context/PrefsContext";
 import { Handshake, House, Target, UserRound } from "lucide-react";
@@ -22,8 +21,8 @@ function AppContent() {
         <DarkVeil />
       </div>
 
-      {/* Desktop Navigation - Dock */}
-      <div className="hidden md:block fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+      {/* Navigation - Dock (appears all the time) */}
+      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
         <Dock
           items={[
             {
@@ -58,18 +57,6 @@ function AppContent() {
                   .getElementById("contact")
                   ?.scrollIntoView({ behavior: "smooth" }),
             },
-          ]}
-        />
-      </div>
-
-      {/* Mobile Navigation - GooeyNav */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
-        <GooeyNav
-          items={[
-            { label: "Home", href: "#home" },
-            { label: "Projects", href: "#projects" },
-            { label: "About", href: "#about" },
-            { label: "Contact", href: "#contact" },
           ]}
         />
       </div>
