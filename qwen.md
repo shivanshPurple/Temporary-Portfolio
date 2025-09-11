@@ -426,6 +426,7 @@ Configured thumbnail generation for Vercel deployments:
 Resolved several issues in the portfolio:
 - Fixed FiGamepad icon error in About section by replacing with available FiCpu icon
 - Fixed carousel pause/play functionality on mouse enter/exit by improving hover detection and autoplay indicator visibility
+- Updated autoplay indicator to show at all times with color-coded states (orange pause when mouse is inside, green play when mouse is outside)
 
 ## Qwen Added Memories
 - I will automatically update the qwen.md file after every successful task completion without requiring manual prompting. This is now part of my standard workflow.
