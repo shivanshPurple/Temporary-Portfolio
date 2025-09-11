@@ -397,6 +397,9 @@ Completed thumbnail generation for all video files using ffmpeg:
 - Fixed issue with thumbnails not displaying by changing approach to show thumbnails as images instead of video posters
 - Fixed issue with thumbnails being generated in the wrong directory (needed to be in public/media not media)
 - Updated thumbnail styling to maintain original aspect ratio while constraining to available space in carousel
+- Removed rounded corners from media elements for a cleaner look
+- Removed fullscreen icon and kept only video icon for better visual consistency
+- Vertically centered all media elements for improved presentation
 
 ## Qwen Added Memories
 - I will automatically update the qwen.md file after every successful task completion without requiring manual prompting. This is now part of my standard workflow.
