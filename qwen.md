@@ -61,6 +61,7 @@ This is a portfolio website built with React, TypeScript, and Vite. It showcases
 5. **Technology Tags**: Visual tags for technologies used in each project
 6. **External Links**: Links to project details, videos, and websites
 7. **Component Reorganization**: Moved all components from `src/blocks` to `src/components` for better organization
+8. **Category-Specific Backgrounds**: Dynamic backgrounds that change based on the selected project category
 
 ## Lessons Learned
 
@@ -79,6 +80,7 @@ This is a portfolio website built with React, TypeScript, and Vite. It showcases
 5. **Performance**: Optimize media loading with lazy loading
 6. **Accessibility**: Improve keyboard navigation and screen reader support
 7. **Component Organization**: All components have been reorganized from `src/blocks` to `src/components` for better maintainability
+8. **Background Transitions**: Background transitions between categories could be further enhanced with more sophisticated animations
 
 ## Upgrade Plan - React Portfolio Conversion
 
@@ -148,6 +150,7 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
   - Python: Backgrounds/Dot Grid
   - Graphic Design: Backgrounds/Silk
   - Certifications: Backgrounds/Dither
+- **Enhanced UX**: Smooth transitions between category backgrounds with overlay for text readability
 
 #### 6. Project Details (modal + routed support)
 
@@ -327,3 +330,6 @@ interface Project {
 - Update qwen.md file after every successful task completion.
 - When doing git commit message, use the following format: "[qwen] feat|fix|docs|style|refactor|test|chore: <description>".
 - Note: All components have been reorganized from `src/blocks` to `src/components` for better maintainability.
+
+## Qwen Added Memories
+- I will automatically update the qwen.md file after every successful task completion without requiring manual prompting. This is now part of my standard workflow.
