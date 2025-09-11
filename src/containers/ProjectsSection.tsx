@@ -266,11 +266,50 @@ const ProjectsSection = () => {
                             className="max-w-full max-h-[30vh] h-auto w-auto object-contain"
                           />
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <FiVideo className="text-white text-4xl opacity-80" />
+                            <div className="bg-gray-500 bg-opacity-30 rounded-full p-2">
+                              <FiVideo className="text-white text-4xl opacity-80" />
+                            </div>
                           </div>
                         </div>
-                      <div className="mt-2 text-center text-gray-300 text-sm">
-                        Video: {media.src.split("/").pop()}
+                      ) : (
+                        <video
+                          src={`/${media.src}`}
+                          muted
+                          loop
+                          preload="auto"
+                          className="max-w-full max-h-[30vh] h-auto w-auto object-contain"
+                          onError={(e) => {
+                            const video = e.currentTarget as HTMLVideoElement;
+                            const fallback = video.parentElement?.querySelector(
+                              ".video-fallback"
+                            ) as HTMLElement;
+                            if (fallback) {
+                              video.style.display = "none";
+                              fallback.style.display = "flex";
+                            }
+                          }}
+                          onMouseEnter={(e) => {
+                            const video = e.currentTarget as HTMLVideoElement;
+                            video.play().catch(() => {});
+                          }}
+                          onMouseLeave={(e) => {
+                            const video = e.currentTarget as HTMLVideoElement;
+                            video.pause();
+                            video.currentTime = 0;
+                          }}
+                        />
+                      )}
+                      {/* Fallback div for thumbnail: Hidden by default */}
+                      <div
+                        className="thumbnail-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
+                      >
+                        <FiVideo className="text-white text-4xl" />
+                      </div>
+                      {/* Fallback div for video: Hidden by default, shown only on load error */}
+                      <div
+                        className="video-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
+                      >
+                        <FiVideo className="text-white text-4xl" />
                       </div>
                     </div>
                   ) : null}
