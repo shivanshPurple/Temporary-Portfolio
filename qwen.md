@@ -394,6 +394,7 @@ Completed thumbnail generation for all video files using ffmpeg:
 - Updated package.json with a script to run thumbnail generation
 - Fixed inconsistencies between generated thumbnail filenames and references in data.json
 - Verified that thumbnails are properly displayed in the carousel
+- Fixed issue with thumbnails not displaying by changing approach to show thumbnails as images instead of video posters
 
 ## Qwen Added Memories
 - I will automatically update the qwen.md file after every successful task completion without requiring manual prompting. This is now part of my standard workflow.

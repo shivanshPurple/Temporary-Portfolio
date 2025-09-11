@@ -1,37 +1,31 @@
-import { useState, useEffect } from 'react';
-import data from '../data.json';
-import { Project, Media, Link } from '../types';
-
-// Background components
-import Hyperspeed from '../components/Hyperspeed';
-import Orb from '../components/Orb';
-import LiquidChrome from '../components/LiquidChrome';
-import DotGrid from '../components/DotGrid';
-import Silk from '../components/Silk';
-import Dither from '../components/Dither';
-
-// New components for grid layout
-import Masonry from '../components/Masonry';
-import InfiniteMenu from '../components/InfiniteMenu';
-import TiltedCard from '../components/TiltedCard';
-import SpotlightCard from '../components/SpotlightCard';
-import GlareHover from '../components/GlareHover';
-import ImageTrail from '../components/ImageTrail';
-import GlassSurface from '../components/GlassSurface';
-import ScrollReveal from '../components/ScrollReveal';
-import FadeContent from '../components/FadeContent';
-import Folder from '../components/Folder';
+import { useState, useEffect } from "react";
+import data from "../data.json";
+import { Project, Media, Link } from "../types";
+import ProjectCarousel from "../components/ProjectCarousel";
+import {
+  FiCode,
+  FiFileText,
+  FiLayers,
+  FiLayout,
+  FiVideo,
+  FiImage,
+  FiLink,
+  FiExternalLink,
+  FiX,
+  FiClock,
+  FiMaximize,
+} from "react-icons/fi";
 
 // Transform the raw JSON data to match our Project interface
 const transformProjectsData = (): Project[] => {
-  return data.projects.map(project => ({
+  return data.projects.map((project) => ({
     category: project.category,
     title: project.title,
     technologies: project.technologies,
     duration: project.duration,
     description: project.description,
     media: project.media as Media[],
-    links: project.links as Link[]
+    links: project.links as Link[],
   }));
 };
 
@@ -40,345 +34,413 @@ const ProjectsSection = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [prevCategory, setPrevCategory] = useState<string | null>(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMedia, setSelectedMedia] = useState<{
+    media: Media;
+    projectTitle: string;
+  } | null>(null);
 
   useEffect(() => {
     // Extract unique categories
     const uniqueCategories = Array.from(
       new Set(projects.map((project) => project.category))
     );
-    
+
     // Sort categories to ensure consistent order
     uniqueCategories.sort();
-    
+
     // Move "UNITY" category to the front if it exists (as it represents game dev)
     const gameDevIndex = uniqueCategories.indexOf("UNITY");
     if (gameDevIndex > -1) {
       const gameDevCategory = uniqueCategories.splice(gameDevIndex, 1)[0];
       uniqueCategories.unshift(gameDevCategory);
     }
-    
+
     setCategories(uniqueCategories);
     setFilteredProjects(projects); // Initially show all projects
   }, [projects]);
 
-  // Handle category filtering
-  const handleCategoryFilter = (category: string | null) => {
-    if (category !== selectedCategory) {
-      setIsTransitioning(true);
-      setPrevCategory(selectedCategory);
+  // Filter projects based on selected category
+  useEffect(() => {
+    let result = projects;
+
+    // Filter by category if one is selected
+    if (selectedCategory) {
+      result = result.filter(
+        (project) => project.category === selectedCategory
+      );
+    }
+
+    setFilteredProjects(result);
+  }, [projects, selectedCategory]);
+
+  // Handle category selection (single select)
+  const handleCategorySelect = (category: string) => {
+    // If the same category is clicked again, deselect it (show all)
+    if (selectedCategory === category) {
+      setSelectedCategory(null);
+    } else {
       setSelectedCategory(category);
-      
-      // Filter projects based on category
-      const filtered = category 
-        ? projects.filter(project => project.category === category)
-        : projects;
-      
-      setFilteredProjects(filtered);
-      
-      // Reset transitioning state after animation completes
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setPrevCategory(null);
-      }, 300);
     }
   };
 
-  // Handle project selection for modal
-  const handleProjectSelect = (project: Project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
+  // Clear category selection
+  const clearCategorySelection = () => {
+    setSelectedCategory(null);
   };
 
-  // Close modal
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedProject(null);
+  // Close media modal
+  const closeMediaModal = () => {
+    setSelectedMedia(null);
   };
 
-  // Aggregate all technologies used across projects
-  const aggregateTechnologies = (): string[] => {
-    const allTechnologies = projects.flatMap(project => project.technologies);
-    return Array.from(new Set(allTechnologies));
+  // Open media in modal
+  const openMediaModal = (media: Media, projectTitle: string) => {
+    setSelectedMedia({ media, projectTitle });
   };
 
-  // Map categories to background components
-  const categoryBackgroundMap: Record<string, React.ComponentType<any>> = {
-    'UNITY': Hyperspeed,
-    'ANDROID JAVA': Orb,
-    'FLUTTER': LiquidChrome,
-    'PYTHON': DotGrid,
-    'GRAPHIC DESIGN': Silk,
-    'CERTIFICATIONS/INTERNSHIPS': Dither
+  // Map project categories to icons
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case "UNITY":
+        return <FiCode className="h-4 w-4 text-white" />;
+      case "ANDROID JAVA":
+        return <FiFileText className="h-4 w-4 text-white" />;
+      case "FLUTTER":
+        return <FiLayers className="h-4 w-4 text-white" />;
+      case "PYTHON":
+        return <FiLayout className="h-4 w-4 text-white" />;
+      case "GRAPHIC DESIGN":
+        return <FiImage className="h-4 w-4 text-white" />;
+      case "CERTIFICATIONS/INTERNSHIPS":
+        return <FiExternalLink className="h-4 w-4 text-white" />;
+      default:
+        return <FiCode className="h-4 w-4 text-white" />;
+    }
   };
 
-  // Get the background components
-  const CurrentBackground = selectedCategory ? categoryBackgroundMap[selectedCategory] : null;
-  const PrevBackground = prevCategory ? categoryBackgroundMap[prevCategory] : null;
+  // Render links
+  const renderLinks = (links: Link[]) => {
+    if (!links || links.length === 0) return null;
 
-  // Determine which card component to use based on project media
+    return (
+      <div className="mt-4">
+        <h4 className="font-semibold text-gray-200 mb-2 flex items-center">
+          <FiLink className="mr-2" />
+          Links
+        </h4>
+        <div className="flex flex-wrap gap-2">
+          {links.map((link, index) => (
+            <a
+              key={index}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-sm bg-purple-600 text-white px-3 py-1 rounded-full hover:bg-purple-700 transition-colors"
+            >
+              <span>{link.text}</span>
+              <FiExternalLink className="ml-1" size={12} />
+            </a>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  // Render project card content for carousel
   const renderProjectCard = (project: Project) => {
-    // Check if project has media that would benefit from a spotlight card
     const hasMedia = project.media && project.media.length > 0;
-    const hasImages = project.media && project.media.some(media => media.type === 'image');
-    
-    if (hasImages) {
-      // Use SpotlightCard for projects with images
-      return (
-        <div 
-          className="cursor-pointer h-full"
-          onClick={() => handleProjectSelect(project)}
-        >
-          <SpotlightCard className="h-full">
-            <div className="p-4">
-              <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-              <p className="text-gray-300 text-sm mb-3 line-clamp-3">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-3">
-                {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                  <span 
-                    key={techIndex} 
-                    className="px-2 py-1 bg-purple-600 text-xs rounded-full"
+    const hasDescription =
+      project.description && project.description.trim().length > 0;
+
+    // Determine layout based on content
+    const showDescription = hasDescription;
+    const showMedia = hasMedia;
+
+    // Calculate column widths
+    let descriptionWidth = "w-1/2";
+    let mediaWidth = "w-1/2";
+
+    if (!showDescription && showMedia) {
+      // No description, only media - give media full width
+      mediaWidth = "w-full";
+    } else if (showDescription && !showMedia) {
+      // Only description, no media - give description full width
+      descriptionWidth = "w-full";
+    }
+    // If both exist, keep 50/50 split
+
+    return (
+      <div className="bg-gray-800 rounded-xl h-full flex">
+        {/* Left side - Description (conditionally shown) */}
+        {showDescription && (
+          <div className={descriptionWidth + " p-6 flex flex-col"}>
+            {/* Header with category and icon */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#060010] mr-3">
+                  {getCategoryIcon(project.category)}
+                </span>
+                <span className="px-3 py-1 bg-purple-600 text-white text-xs font-medium rounded-full">
+                  {project.category}
+                </span>
+              </div>
+              {project.duration && (
+                <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded flex items-center">
+                  <FiClock className="mr-1" />
+                  {project.duration}
+                </span>
+              )}
+            </div>
+
+            {/* Title */}
+            <h3 className="text-2xl font-bold text-white mb-3">
+              {project.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-gray-300 mb-4 flex-grow">
+              {project.description}
+            </p>
+
+            {/* Technologies */}
+            <div className="mb-4">
+              <h4 className="font-semibold text-gray-200 mb-2">Technologies</h4>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.slice(0, 8).map((tech, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 bg-gray-700 text-gray-200 text-xs rounded-full"
                   >
                     {tech}
                   </span>
                 ))}
-                {project.technologies.length > 3 && (
-                  <span className="px-2 py-1 bg-gray-600 text-xs rounded-full">
-                    +{project.technologies.length - 3} more
+                {project.technologies.length > 8 && (
+                  <span className="px-2 py-1 bg-gray-700 text-gray-200 text-xs rounded-full">
+                    +{project.technologies.length - 8} more
                   </span>
                 )}
               </div>
-              <div className="text-xs text-gray-400">
-                <span>Duration: {project.duration}</span>
-              </div>
             </div>
-          </SpotlightCard>
-        </div>
-      );
-    } else {
-      // Use TiltedCard for projects without images
-      return (
-        <div 
-          className="cursor-pointer h-full"
-          onClick={() => handleProjectSelect(project)}
-        >
-          <GlareHover>
-            <TiltedCard
-              imageSrc={hasMedia ? project.media[0].src : undefined}
-              altText={project.title}
-              captionText={project.title}
-              containerHeight="100%"
-            >
-              <div className="p-4">
-                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-gray-300 text-sm mb-3 line-clamp-3">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                    <span 
-                      key={techIndex} 
-                      className="px-2 py-1 bg-purple-600 text-xs rounded-full"
-                    >
-                      {tech}
-                  </span>
-                ))}
-                {project.technologies.length > 3 && (
-                  <span className="px-2 py-1 bg-gray-600 text-xs rounded-full">
-                    +{project.technologies.length - 3} more
-                  </span>
-                )}
-              </div>
-              <div className="text-xs text-gray-400">
-                <span>Duration: {project.duration}</span>
-              </div>
-            </div>
-          </TiltedCard>
-        </GlareHover>
-      </div>
-      );
-    }
-  };
 
-  // Render project media
-  const renderProjectMedia = (media: Media) => {
-    switch (media.type) {
-      case 'image':
-        return (
-          <img 
-            src={media.src} 
-            alt="Project media" 
-            className="w-full h-auto rounded-lg"
-          />
-        );
-      case 'video':
-        return (
-          <video 
-            src={media.src} 
-            controls 
-            className="w-full rounded-lg"
-          />
-        );
-      default:
-        return null;
-    }
+            {/* Links */}
+            {renderLinks(project.links)}
+          </div>
+        )}
+
+        {/* Right side - Media (only show if media exists) */}
+        {showMedia && (
+          <div
+            className={
+              mediaWidth + " p-6 bg-gray-900 rounded-r-xl flex flex-col"
+            }
+          >
+            <h4 className="font-semibold text-gray-200 mb-4 flex items-center">
+              <FiImage className="mr-2" />
+              Media
+            </h4>
+
+            <div className="flex-grow overflow-y-auto rounded-lg max-h-[50vh]">
+              {project.media.map((media, index) => (
+                <div key={index} className="mb-4">
+                  {media.type === "image" ? (
+                    <div
+                      className="relative cursor-pointer group"
+                      onClick={() => openMediaModal(media, project.title)}
+                    >
+                      <img
+                        src={`/${media.src}`} // Fixed: Add leading '/' for public/ path
+                        alt={project.title}
+                        className="w-full h-auto max-h-[40vh] object-contain rounded"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded transition-all duration-300 flex items-center justify-center">
+                        <FiMaximize
+                          className="text-white text-opacity-0 group-hover:text-opacity-100 transition-all duration-300"
+                          size={24}
+                        />
+                      </div>
+                    </div>
+                  ) : media.type === "video" ? (
+                    <div
+                      className="relative cursor-pointer group"
+                      onClick={() => openMediaModal(media, project.title)}
+                    >
+                      {/* Display thumbnail as image if available, otherwise show video */}
+                      {media.poster ? (
+                        <div className="relative">
+                          <img
+                            src={`/${media.poster}`}
+                            alt={`${project.title} thumbnail`}
+                            className="w-full h-32 object-cover rounded"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <FiVideo className="text-white text-4xl opacity-80" />
+                          </div>
+                        </div>
+                      ) : (
+                        <video
+                          src={`/${media.src}`}
+                          muted
+                          loop
+                          preload="auto"
+                          className="w-full h-32 object-cover rounded"
+                          onError={(e) => {
+                            const video = e.currentTarget as HTMLVideoElement;
+                            const fallback = video.parentElement?.querySelector(
+                              ".video-fallback"
+                            ) as HTMLElement;
+                            if (fallback) {
+                              video.style.display = "none";
+                              fallback.style.display = "flex";
+                            }
+                          }}
+                          onMouseEnter={(e) => {
+                            const video = e.currentTarget as HTMLVideoElement;
+                            video.play().catch(() => {});
+                          }}
+                          onMouseLeave={(e) => {
+                            const video = e.currentTarget as HTMLVideoElement;
+                            video.pause();
+                            video.currentTime = 0;
+                          }}
+                        />
+                      )}
+                      {/* Fallback div: Hidden by default, shown only on load error */}
+                      <div
+                        className="video-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
+                      >
+                        <FiVideo className="text-white text-4xl" />
+                      </div>
+                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded transition-all duration-300 flex items-center justify-center">
+                        <FiMaximize
+                          className="text-white text-opacity-0 group-hover:text-opacity-100 transition-all duration-300"
+                          size={24}
+                        />
+                      </div>
+                      <div className="mt-2 text-center text-gray-300 text-sm">
+                        Video: {media.src.split("/").pop()}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
   };
 
   return (
-    <section id="projects" className="min-h-screen py-20 px-4 relative">
-      {/* Background components with transition */}
-      <div className="fixed inset-0 -z-10">
-        {/* Previous background (fading out) */}
-        {PrevBackground && (
-          <div className="absolute inset-0 transition-opacity duration-300 opacity-0">
-            <PrevBackground />
-          </div>
-        )}
-        
-        {/* Current background (fading in) */}
-        {CurrentBackground ? (
-          <div className={`absolute inset-0 transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
-            <CurrentBackground />
-          </div>
-        ) : (
-          // Fallback background when no category is selected
-          <div className={`absolute inset-0 transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
-            <div className="w-full h-full bg-gradient-to-br from-gray-900 to-black" />
-          </div>
-        )}
-        
-        {/* Overlay to ensure text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-70"></div>
-      </div>
-      
-      <div className="max-w-6xl mx-auto relative z-10">
-        <ScrollReveal>
-          <h2 className="text-4xl font-bold text-white text-center mb-12">
-            Projects
-          </h2>
-        </ScrollReveal>
-        
-        {/* Category filtering menu */}
-        <div className="mb-8">
-          <InfiniteMenu
-            items={categories.map(category => ({
-              label: category,
-              onClick: () => handleCategoryFilter(category === selectedCategory ? null : category)
-            }))}
-            activeItem={selectedCategory || 'All'}
-          />
-        </div>
-        
-        {/* Projects grid with fade animation */}
-        <FadeContent>
-          <Masonry
-            items={filteredProjects.map((project, index) => ({
-              id: index,
-              content: renderProjectCard(project)
-            }))}
-            columnWidth={300}
-            gap={20}
-          />
-        </FadeContent>
-        
-        {/* Tech stack visualization */}
-        <div className="mt-16">
-          <ScrollReveal>
-            <h3 className="text-2xl font-bold text-white mb-6 text-center">
-              Technologies Used
-            </h3>
-          </ScrollReveal>
-          <div className="flex justify-center">
-            <Folder 
-              items={aggregateTechnologies().map((tech, index) => (
-                <div 
-                  key={index} 
-                  className="px-3 py-1 bg-purple-600 text-white text-sm rounded-full"
-                >
-                  {tech}
-                </div>
-              ))}
-              color="#5227FF"
-              size={1.2}
-            />
-          </div>
+    <section
+      id="projects"
+      className="min-h-screen flex flex-col items-center justify-center py-16 px-4"
+    >
+      <div className="max-w-6xl mx-auto w-full text-center">
+        <h2 className="text-4xl font-bold text-white mb-8">Projects</h2>
+
+        {/* Category filtering chips (single select) */}
+        <div className="mb-8 flex flex-wrap gap-2 items-center justify-center">
+          <span className="text-white font-medium">Filter by:</span>
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => handleCategorySelect(category)}
+              className={`px-3 py-1 text-sm rounded-full transition-colors duration-300 flex items-center ${
+                selectedCategory === category
+                  ? "bg-purple-600 text-white"
+                  : "bg-gray-700 text-gray-200 hover:bg-gray-600"
+              }`}
+            >
+              {getCategoryIcon(category)}
+              <span className="ml-1">{category}</span>
+            </button>
+          ))}
+          {selectedCategory && (
+            <button
+              onClick={clearCategorySelection}
+              className="px-3 py-1 bg-gray-700 text-white text-sm rounded-full hover:bg-gray-600 transition-colors duration-300 flex items-center"
+            >
+              <FiX className="mr-1" size={14} />
+              Clear
+            </button>
+          )}
         </div>
       </div>
-      
-      {/* Project Detail Modal */}
-      {isModalOpen && selectedProject && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          onClick={closeModal}
-        >
-          <GlassSurface
-            className="max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <h2 className="text-3xl font-bold text-white">{selectedProject.title}</h2>
-                <button 
-                  className="text-white text-2xl hover:text-gray-300"
-                  onClick={closeModal}
-                >
-                  ×
-                </button>
-              </div>
-              
-              <div className="mb-6">
-                <p className="text-gray-300 mb-4">{selectedProject.description}</p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {selectedProject.technologies.map((tech, techIndex) => (
-                    <span 
-                      key={techIndex} 
-                      className="px-3 py-1 bg-purple-600 text-sm rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="text-sm text-gray-400 mb-4">
-                  <span>Duration: {selectedProject.duration}</span>
-                </div>
-                
-                {selectedProject.media && selectedProject.media.length > 0 && (
-                  <div className="mb-6">
-                    <h3 className="text-xl font-semibold text-white mb-3">Media</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {selectedProject.media.map((media, mediaIndex) => (
-                        <div key={mediaIndex} className="rounded-lg overflow-hidden">
-                          {renderProjectMedia(media)}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
-                {selectedProject.links && selectedProject.links.length > 0 && (
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-3">Links</h3>
-                    <div className="flex flex-wrap gap-3">
-                      {selectedProject.links.map((link, linkIndex) => (
-                        <a
-                          key={linkIndex}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-                        >
-                          {link.text}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
+
+      {/* Full width carousel container centered vertically */}
+      <div className="w-full flex-grow flex items-center justify-center px-4">
+        <div className="w-[80vw] h-[65vh] max-w-[80vw] max-h-[65vh]">
+          {filteredProjects.length > 0 ? (
+            <div className="w-full h-full">
+              <ProjectCarousel
+                items={filteredProjects.map((project, index) => ({
+                  id: index,
+                  content: renderProjectCard(project),
+                }))}
+                autoplay={true}
+                autoplayDelay={8000}
+                pauseOnHover={true}
+                loop={true}
+              />
+            </div>
+          ) : (
+            <div className="text-center text-white py-12 bg-gray-800 rounded-xl w-full h-full flex items-center justify-center">
+              <div>
+                <h3 className="text-xl font-semibold mb-2">
+                  No Projects Found
+                </h3>
+                <p className="text-gray-400">
+                  Try selecting a different category
+                </p>
               </div>
             </div>
-          </GlassSurface>
+          )}
+        </div>
+      </div>
+
+      {/* Add some bottom padding for spacing */}
+      <div className="py-8"></div>
+
+      {/* Media Modal */}
+      {selectedMedia && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4"
+          onClick={closeMediaModal}
+        >
+          <div
+            className="relative max-w-4xl max-h-[90vh] w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 z-10 hover:bg-opacity-75 transition-colors"
+              onClick={closeMediaModal}
+            >
+              <FiX size={24} />
+            </button>
+
+            <div className="bg-gray-800 rounded-xl p-4">
+              <h3 className="text-white text-xl font-bold mb-2 text-center">
+                {selectedMedia.projectTitle}
+              </h3>
+
+              {selectedMedia.media.type === "image" ? (
+                <img
+                  src={`/${selectedMedia.media.src}`} // Fixed: Add leading '/' for public/ path
+                  alt={selectedMedia.projectTitle}
+                  className="w-full h-auto max-h-[70vh] object-contain rounded"
+                />
+              ) : selectedMedia.media.type === "video" ? (
+                <div className="relative">
+                  <video
+                    src={`/${selectedMedia.media.src}`} // Fixed: Add leading '/' for public/ path
+                    controls
+                    autoPlay
+                    className="w-full h-auto max-h-[70vh] rounded"
+                  />
+                </div>
+              ) : null}
+            </div>
+          </div>
         </div>
       )}
     </section>
