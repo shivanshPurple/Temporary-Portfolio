@@ -250,7 +250,7 @@ const ProjectsSection = () => {
                       <img
                         src={`/${media.src}`} // Fixed: Add leading '/' for public/ path
                         alt={project.title}
-                        className="w-full h-auto max-h-[40vh] object-contain rounded"
+                        className="max-w-full max-h-[40vh] h-auto w-auto object-contain rounded"
                       />
                       <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-30 rounded transition-all duration-300 flex items-center justify-center">
                         <FiMaximize
@@ -270,7 +270,7 @@ const ProjectsSection = () => {
                           <img
                             src={`/${media.poster}`}
                             alt={`${project.title} thumbnail`}
-                            className="w-full h-32 object-cover rounded"
+                            className="max-w-full max-h-[30vh] h-auto w-auto object-contain rounded"
                           />
                           <div className="absolute inset-0 flex items-center justify-center">
                             <FiVideo className="text-white text-4xl opacity-80" />
@@ -282,7 +282,7 @@ const ProjectsSection = () => {
                           muted
                           loop
                           preload="auto"
-                          className="w-full h-32 object-cover rounded"
+                          className="max-w-full max-h-[30vh] h-auto w-auto object-contain rounded"
                           onError={(e) => {
                             const video = e.currentTarget as HTMLVideoElement;
                             const fallback = video.parentElement?.querySelector(
@@ -433,7 +433,7 @@ const ProjectsSection = () => {
                 <img
                   src={`/${selectedMedia.media.src}`} // Fixed: Add leading '/' for public/ path
                   alt={selectedMedia.projectTitle}
-                  className="w-full h-auto max-h-[70vh] object-contain rounded"
+                  className="max-w-full max-h-[70vh] h-auto w-auto object-contain rounded"
                 />
               ) : selectedMedia.media.type === "video" ? (
                 <div className="relative">
@@ -441,7 +441,7 @@ const ProjectsSection = () => {
                     src={`/${selectedMedia.media.src}`} // Fixed: Add leading '/' for public/ path
                     controls
                     autoPlay
-                    className="w-full h-auto max-h-[70vh] rounded"
+                    className="max-w-full max-h-[70vh] h-auto w-auto rounded"
                   />
                 </div>
               ) : null}
