@@ -1,4 +1,4 @@
-import { FiCode, FiGamepad, FiSmartphone, FiCpu, FiCoffee } from 'react-icons/fi';
+import { FiCode, FiCpu, FiCoffee, FiSmartphone } from 'react-icons/fi';
 
 const AboutSection = () => {
   return (
@@ -42,7 +42,7 @@ const AboutSection = () => {
             
             <div className="bg-gray-700 p-4 rounded-lg">
               <div className="flex items-center mb-2">
-                <FiGamepad className="text-purple-500 text-xl mr-2" />
+                <FiCpu className="text-purple-500 text-xl mr-2" />
                 <h3 className="text-white font-semibold">Game Development</h3>
               </div>
               <p className="text-gray-300 text-sm">

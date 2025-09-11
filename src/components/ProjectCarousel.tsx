@@ -42,28 +42,49 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
 
   // Autoplay functionality
   useEffect(() => {
-    if (!autoplay || isPaused) return;
+    console.log('Autoplay useEffect triggered, autoplay:', autoplay, 'isPaused:', isPaused);
+    if (!autoplay || isPaused) {
+      console.log('Autoplay stopped or paused');
+      return;
+    }
     
+    console.log('Starting autoplay interval with delay:', autoplayDelay);
     const interval = setInterval(() => {
+      console.log('Autoplay interval triggered, current index:', currentIndex);
       setCurrentIndex(prev => {
         if (loop) {
-          return (prev + 1) % items.length;
+          const newIndex = (prev + 1) % items.length;
+          console.log('Moving to next item, new index:', newIndex);
+          return newIndex;
         } else {
-          return prev < items.length - 1 ? prev + 1 : prev;
+          const newIndex = prev < items.length - 1 ? prev + 1 : prev;
+          console.log('Moving to next item (no loop), new index:', newIndex);
+          return newIndex;
         }
       });
     }, autoplayDelay);
     
-    return () => clearInterval(interval);
+    return () => {
+      console.log('Clearing autoplay interval');
+      clearInterval(interval);
+    };
   }, [autoplay, autoplayDelay, isPaused, items.length, loop]);
 
   // Handle hover pause
   const handleMouseEnter = () => {
-    if (pauseOnHover) setIsPaused(true);
+    console.log('Mouse entered carousel, pauseOnHover:', pauseOnHover);
+    if (pauseOnHover) {
+      console.log('Pausing carousel');
+      setIsPaused(true);
+    }
   };
 
   const handleMouseLeave = () => {
-    if (pauseOnHover) setIsPaused(false);
+    console.log('Mouse left carousel, pauseOnHover:', pauseOnHover);
+    if (pauseOnHover) {
+      console.log('Resuming carousel');
+      setIsPaused(false);
+    }
   };
 
   // Navigation functions
@@ -98,7 +119,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden rounded-xl"
+      className="relative w-full h-full overflow-hidden rounded-xl group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -158,7 +179,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
       
       {/* Autoplay indicator - shows on hover and is orange */}
       {autoplay && (
-        <div className="absolute top-4 right-4 flex items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute top-4 right-4 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="bg-orange-500 bg-opacity-90 px-2 py-1 rounded-full flex items-center">
             {isPaused ? (
               <FiPlay className="text-white" size={16} />
