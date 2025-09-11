@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a portfolio website built with React, TypeScript, and Vite. It showcases various projects organized by categories in an accordion-based layout. All components have been reorganized from `src/blocks` to `src/components` for better maintainability.
+This is a portfolio website built with React, TypeScript, and Vite. It showcases various projects organized by categories in a simple carousel layout with filtering chips. All components have been reorganized from `src/blocks` to `src/components` for better maintainability.
 
 ## Architecture
 
@@ -18,78 +18,133 @@ This is a portfolio website built with React, TypeScript, and Vite. It showcases
 
 ## Key Components
 
-### Accordion System
+### Carousel System
 
-- **Location**: `src/components/Accordion/`
+- **Location**: `src/components/Carousel/`
 - **Files**:
-  - `Accordion.tsx` - Main accordion container
-  - `AccordionItem.tsx` - Individual accordion items
-  - `index.ts` - Export file
-- **Purpose**: Display projects organized by category in an expandable/collapsible interface
+  - `Carousel.tsx` - Main carousel component
+  - `Carousel.css` - Styling for the carousel
+- **Purpose**: Display projects in a large, centered carousel layout
 - **Features**:
-  - Categories sorted alphabetically
-  - "UNITY" category (representing game development) prioritized to appear first
-  - Smooth toggle animation
-  - Responsive grid layout for projects within each category
+  - Responsive design taking 80vw width and 65vh height
+  - Touch and mouse navigation
+  - Looping capability
+  - 8-second autoplay with hover-pause functionality
+  - Orange navigation arrows that appear on hover
+  - Autoplay indicator (orange) that appears on hover
+  - Smooth transitions between slides
+  - Media modal system for detailed viewing
 
-### Data Structure
+### Filtering System
 
-- **Location**: `src/data.json`
-- **Structure**: Array of project objects with:
-  - `category`: Project category (e.g., "UNITY", "ANDROID JAVA")
-  - `title`: Project title
-  - `technologies`: Array of technologies used
-  - `duration`: Project duration
-  - `description`: Detailed project description
-  - `media`: Array of media objects (images/videos)
-  - `links`: Array of link objects
+- **Location**: `src/containers/ProjectsSection.tsx`
+- **Purpose**: Allow users to filter projects by category
+- **Features**:
+  - Simple category chips for filtering
+  - Visual indication of active filters
+  - Clear all filters option
 
-### Type Definitions
+### Project Cards
 
-- **Location**: `src/types.ts`
-- **Interfaces**:
-  - `Media`: Media object with type ("image"|"video") and source
-  - `Link`: Link object with text and URL
-  - `Project`: Complete project structure
+- **Location**: `src/containers/ProjectsSection.tsx`
+- **Purpose**: Split-layout project cards with description and media
+- **Features**:
+  - Two-column layout (description on left, media on right)
+  - Adaptive layout that adjusts based on content availability
+  - Media section collapses when no media is available
+  - Images displayed directly in carousel
+  - Videos shown as thumbnails with video icon overlay
+  - Click to open media in full-screen modal
+  - Clear project duration display with clock icon
+  - Technology tags with consistent styling
+  - Scrollable media section for projects with multiple media items
+  - Media height constrained to fit within carousel boundaries
 
-## Key Features Implemented
+### Modal System
 
-1. **Accordion-based Project Display**: Projects organized by category in expandable sections
-2. **Category Prioritization**: "UNITY" category (game development) appears first
-3. **Responsive Design**: Works on mobile and desktop
-4. **Media Support**: Displays images and videos for projects
-5. **Technology Tags**: Visual tags for technologies used in each project
-6. **External Links**: Links to project details, videos, and websites
-7. **Component Reorganization**: Moved all components from `src/blocks` to `src/components` for better organization
-8. **Category-Specific Backgrounds**: Dynamic backgrounds that change based on the selected project category
-9. **Grid-Based Layout**: Replaced accordion with masonry grid layout for better visual presentation
-10. **Category Filtering**: Infinite menu for filtering projects by category
-11. **Enhanced Project Cards**: TiltedCard and SpotlightCard components for visually appealing project displays
-12. **Hover Effects**: GlareHover and ImageTrail components for interactive card effects
-13. **Project Detail Modal**: GlassSurface modal for detailed project information
-14. **Scroll Animations**: ScrollReveal and FadeContent for smooth content transitions
-15. **Tech Stack Visualization**: Folder component to showcase all technologies used
+- **Location**: `src/containers/ProjectsSection.tsx`
+- **Purpose**: Display media in a full-screen modal for detailed viewing
+- **Features**:
+  - Semi-transparent dark overlay background
+  - Centered media display with maximum height constraints
+  - Close button in top-right corner
+  - Click outside modal or press ESC to close
+  - Auto-play videos when opened in modal
+  - Project title display above media
+  - Responsive design that works on all screen sizes
+
+### Media Handling
+
+- **Location**: `src/containers/ProjectsSection.tsx`
+- **Purpose**: Efficient media display and interaction within carousel
+- **Features**:
+  - Images displayed directly in carousel with proper scaling
+  - Videos shown as thumbnails with video icon overlay in carousel
+  - Media section automatically hides when no media is available
+  - Scrollable media section for projects with multiple media items
+  - Media height constrained to fit within carousel boundaries
+  - Click to open any media in full-screen modal
+  - Auto-play videos when opened in modal
+  - Hover effects with maximize icon to indicate interactivity
+
+- **Location**: `src/components/GlassSurface/`
+- **Files**:
+  - `GlassSurface.tsx` - Modal container
+  - `GlassSurface.css` - Styling for the modal
+- **Purpose**: Display detailed project information in a modal
+- **Features**:
+  - Semi-transparent background
+  - Close button and keyboard navigation
+  - Responsive layout for all screen sizes
+
+## Simplified Architecture
+
+After implementing the initial upgrade plan, the portfolio was further simplified to improve performance and maintainability:
+
+### Benefits of Simplification
+
+1. **Improved Performance**: Removed heavy WebGL backgrounds and complex animations
+2. **Reduced Bundle Size**: Eliminated unused dependencies and components
+3. **Easier Maintenance**: Simplified codebase with fewer components and dependencies
+4. **Consistent User Experience**: Unified design approach across all sections
+5. **Better Accessibility**: Streamlined navigation and interaction patterns
+6. **Faster Development**: Simpler components are quicker to understand and modify
+7. **Focus on Content**: Eliminated distractions to focus on project展示
+
+### Current Component Architecture
+
+- **Unified Background System**: Single gradient background with overlay for all sections
+- **Simple Carousel Design**: Carousel component used for project displays
+- **Chip-based Filtering**: Simple category filtering with chips above carousel
+- **Streamlined State Management**: Reduced component state and simplified data flow
 
 ## Lessons Learned
 
 1. **TypeScript Integration**: Proper typing of JSON data imported from files
 2. **Component Structure**: Building reusable, well-organized components
-3. **State Management**: Using React useState for accordion open/close states
+3. **State Management**: Using React useState for component state management
 4. **Path Resolution**: Correct relative path imports in nested component structures
 5. **Build Process**: Ensuring compatibility with Vite build process
+6. **Component Simplification**: Benefits of simplifying complex UI systems for better performance and maintainability
+7. **Dependency Management**: Importance of regularly auditing and cleaning up unused dependencies
+8. **Consistent Design Systems**: Value of unified design approaches across different sections of an application
+9. **User Experience Focus**: Simpler designs often provide better user experiences
+10. **Performance Optimization**: Removing unnecessary features can significantly improve performance
 
 ## Future Enhancement Opportunities
 
-1. **Search/Filter**: Add search and filtering capabilities
-2. **Animation**: Re-implement smooth height animations for accordion items
-3. **Project Details**: Create dedicated project detail pages
-4. **Dark/Light Mode**: Implement theme switching
-5. **Performance**: Optimize media loading with lazy loading
-6. **Accessibility**: Improve keyboard navigation and screen reader support
-7. **Component Organization**: All components have been reorganized from `src/blocks` to `src/components` for better maintainability
-8. **Background Transitions**: Background transitions between categories could be further enhanced with more sophisticated animations
-9. **Image Trail Enhancement**: Implement more sophisticated ImageTrail effects on project cards
-10. **Advanced Filtering**: Add multi-category filtering and search functionality
+1. **Enhanced Filtering**: Improve filtering UI with better visual design and multi-select capabilities
+2. **Project Details**: Create dedicated project detail pages with more comprehensive information
+3. **Dark/Light Mode**: Implement theme switching for user preference
+4. **Performance**: Optimize media loading with lazy loading and progressive enhancement
+5. **Accessibility**: Improve keyboard navigation and screen reader support
+6. **Component Organization**: All components have been reorganized from `src/blocks` to `src/components` for better maintainability
+7. **Enhanced Carousel**: Add more sophisticated carousel features and transitions
+8. **Interactive Elements**: Implement more interactive elements and effects
+9. **Mobile Optimization**: Further optimize for mobile devices and touch interactions
+10. **Search Functionality**: Add search capabilities to find specific projects
+11. **Social Sharing**: Add social sharing buttons for projects
+12. **Analytics Integration**: Add analytics to track project views and user engagement
 
 ## Upgrade Plan - React Portfolio Conversion
 
@@ -101,7 +156,6 @@ Convert the current HTML/CSS portfolio into a modern React application using the
 
 - **Cinematic, category-driven portfolio** with immersive section backgrounds, animated type, and interactive cards
 - **Data-driven projects** from projects.json (already created), enabling filtering and future updates without code changes
-- **Motion as progressive enhancement**; users with reduced-motion preference get a quiet, accessible version
 
 ### Tech Stack and Project Structure
 
@@ -113,7 +167,7 @@ Convert the current HTML/CSS portfolio into a modern React application using the
 #### Directory Layout
 
 ```
-src/ ├── components/ │ ├── reactbits/ # Drop-in components from MCP │ └── app/ # Compositions/wrappers, layout, cards, modals ├── pages/ │ ├── Home.tsx │ ├── Projects.tsx # Optional │ └── ProjectDetail.tsx # Optional routed modal ├── context/ │ └── PrefsContext.tsx # Reduced motion, theme └── styles/ └── tailwind.css
+src/ ├── components/ │ ├── reactbits/ # Drop-in components from MCP │ └── app/ # Compositions/wrappers, layout, cards, modals ├── pages/ │ ├── Home.tsx │ ├── Projects.tsx # Optional │ └── ProjectDetail.tsx # Optional routed modal ├── context/ │ └── PrefsContext.tsx # Theme support └── styles/ └── tailwind.css
 ```
 
 ### Core UX Flow and Component Strategy
@@ -121,7 +175,7 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
 #### 1. Global: Navigation + Cursor + Base FX
 
 - **Quick Access Dock** (appears all the time): Components/Dock for category jump shortcuts
-- **Cursor Effects**: Animations/Fluid Glass. Respect prefers-reduced-motion.
+- **Cursor Effects**: Animations/Fluid Glass.
 
 #### 2. Hero/Intro (replaces old title area)
 
@@ -145,23 +199,22 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
 
 #### 5. Projects Explorer (the main portfolio grid)
 
-- **Filter Tabs/Chips**: Components/Infinite Menu for category filters (Unity, Android Java, Flutter, Python, Design, Certifications)
-- **Grid Layout**: Components/Masonry for mixed media cards
-- **Card Pattern**:
-  - Tilt/Hover: Components/Tilted Card for primary cards
-  - Alternate: Components/Spotlight Card for media-centric entries
-  - Hover image fx: Animations/Image Trail on cursor move in the grid area (optional, desktop)
-- **Scroll-in FX**: Text Animations/Scroll Reveal for section headings; Animations/Fade Content for card batches
-- **Section Background by Category** (when a filter is active):
-  - Unity: Backgrounds/Hyperspeed
-  - Android Java: Backgrounds/Orb
-  - Flutter: Backgrounds/Liquid Chrome
-  - Python: Backgrounds/Dot Grid
-  - Graphic Design: Backgrounds/Silk
-  - Certifications: Backgrounds/Dither
-- **Enhanced UX**: Smooth transitions between category backgrounds with overlay for text readability
-- **Project Details**: Components/Glass Surface modal for detailed project information
-- **Tech Stack**: Components/Folder for visualizing all technologies used
+- **Filter Tabs/Chips**: Simple category filtering chips above carousel (single-select)
+- **Display**: Large carousel component taking 80vw width and 65vh height, centered on screen
+- **Card Pattern**: Split-layout project cards with description on left and media on right
+- **Media Handling**: 
+  - Images displayed directly in carousel
+  - Videos shown as thumbnails with video icon overlay
+  - Click to open media in full-screen modal
+  - Auto-play videos in modal
+- **Navigation**: 
+  - Orange navigation arrows that appear on hover
+  - Autoplay indicator (orange) that appears on hover
+  - 8-second autoplay delay for better viewing experience
+- **Adaptive Layout**: 
+  - Media section collapses when no media is available
+  - Description section reduces size for content-light projects
+  - Scrollable media section for projects with multiple items
 
 #### 6. Project Details (modal + routed support)
 
@@ -176,7 +229,7 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
 #### 7. Skills/Tech Stack visualization
 
 - **Grid**: Components/Chroma Grid showing tech icons inferred from projects.json (aggregate techs)
-- **Text flair**: Text Animations/Variable Proximity for dynamic headings (disabled if reduced motion)
+- **Text flair**: Text Animations/Variable Proximity for dynamic headings
 
 #### 8. Certifications/Experience
 
@@ -233,18 +286,11 @@ interface Project {
 
 - Lazy load heavy backgrounds and media via intersection observers
 
-- Provide a "Reduce Motion" toggle that:
-
-  - Disables background shaders/heavy canvases (Galaxy, Liquid Chrome)
-  - Switches to static gradient or Dark Veil
-  - Disables cursor effects, Scroll Velocity
-
 #### Accessibility Features
 
 - Keyboard navigation: modal trap focus
 - Color contrast: ensure readable text over animated backgrounds (use Dark Veil overlays and backdrop blur)
 - Screen reader support: proper ARIA labels on interactive elements
-- Reduced motion: comprehensive support throughout
 
 ### Styling and Theming
 
@@ -261,13 +307,12 @@ interface Project {
 
 - Initialize Vite + React + TS; install Tailwind; set up base config and fonts
 - Add react-bits components you plan to use (co-locate under src/components/reactbits)
-- Add PrefsContext (reduced-motion/theme)
+- Add PrefsContext (theme)
 
 #### Phase 1: Layout + Navigation
 
 - Build App layout with Dock
 - Add Dark Veil background and Split Text hero with subtitle
-- Wire reduced-motion to switch out backgrounds/cursor effects
 
 #### Phase 2: Data and Cards
 
@@ -300,18 +345,18 @@ interface Project {
 | Hero           | Aurora + Dark Veil; Split Text; Shiny/Gradient Text; Glare Hover                                              |
 | About          | Spotlight Card; Beams/Light Rays; True Focus                                                                  |
 | Featured       | Carousel; Glare Hover; Scroll Reveal                                                                          |
-| Projects       | Infinite Menu (filters); Masonry (grid); Tilted Card/Spotlight Card; Image Trail; Fade Content; Scroll Reveal |
+| Projects       | Carousel; Category filtering chips                                                                            |
 | Details        | Glass Surface/Fluid Glass; Carousel/Rolling Gallery; Scroll Stack; Ribbons                                    |
 | Skills         | Chroma Grid; Variable Proximity                                                                               |
 | Certifications | Card Swap; Light Rays/Iridescence                                                                             |
-| Graphic Design | Circular Gallery/Rolling Gallery; Orb/Aurora variant                                                          |
+| Graphic Design | Circular Gallery/Rolling Gallery; Aurora variant                                                              |
 | Footer         | Scroll Velocity; Dot Grid                                                                                     |
 
 ### Risks and Mitigations
 
 #### Performance Risks
 
-- **Heavy backgrounds on low-end devices**: gate with reduced-motion; provide static gradient fallbacks
+- **Heavy backgrounds on low-end devices**: provide static gradient fallbacks
 - **Video auto-play policies**: ensure autoplay muted; provide poster frames
 - **Component overlap/z-index with backgrounds**: use overlays/backdrop blur consistently
 
@@ -327,7 +372,6 @@ interface Project {
 
 - Pin exact version tags of react-bits components used
 - Tailwind config and plugin list documented
-- Component wrappers (e.g., SafeBackground) to centralize reduced-motion logic
 - All components have been reorganized from `src/blocks` to `src/components` for better maintainability
 
 #### Future Extensibility
@@ -341,6 +385,15 @@ interface Project {
 - Update qwen.md file after every successful task completion.
 - When doing git commit message, use the following format: "[qwen] feat|fix|docs|style|refactor|test|chore: <description>".
 - Note: All components have been reorganized from `src/blocks` to `src/components` for better maintainability.
+
+## Thumbnail Generation
+
+Completed thumbnail generation for all video files using ffmpeg:
+- Created a thumbnail generation script using Node.js and ffmpeg
+- Generated thumbnails for all 17 video files in the media directory
+- Updated package.json with a script to run thumbnail generation
+- Fixed inconsistencies between generated thumbnail filenames and references in data.json
+- Verified that thumbnails are properly displayed in the carousel
 
 ## Qwen Added Memories
 - I will automatically update the qwen.md file after every successful task completion without requiring manual prompting. This is now part of my standard workflow.
