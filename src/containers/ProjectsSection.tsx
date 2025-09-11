@@ -13,7 +13,6 @@ import {
   FiExternalLink,
   FiX,
   FiClock,
-  FiMaximize,
 } from "react-icons/fi";
 
 // Transform the raw JSON data to match our Project interface
@@ -239,29 +238,23 @@ const ProjectsSection = () => {
               Media
             </h4>
 
-            <div className="flex-grow overflow-y-auto rounded-lg max-h-[50vh]">
+            <div className="flex-grow overflow-y-auto rounded-lg max-h-[50vh] flex flex-col items-center justify-center">
               {project.media.map((media, index) => (
-                <div key={index} className="mb-4">
+                <div key={index} className="mb-4 flex justify-center">
                   {media.type === "image" ? (
                     <div
-                      className="relative cursor-pointer group"
+                      className="relative cursor-pointer group flex justify-center"
                       onClick={() => openMediaModal(media, project.title)}
                     >
                       <img
                         src={`/${media.src}`} // Fixed: Add leading '/' for public/ path
                         alt={project.title}
-                        className="max-w-full max-h-[40vh] h-auto w-auto object-contain rounded"
+                        className="max-w-full max-h-[40vh] h-auto w-auto object-contain"
                       />
-                      <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-30 rounded transition-all duration-300 flex items-center justify-center">
-                        <FiMaximize
-                          className="text-white text-opacity-0 group-hover:text-opacity-100 transition-all duration-300"
-                          size={24}
-                        />
-                      </div>
                     </div>
                   ) : media.type === "video" ? (
                     <div
-                      className="relative cursor-pointer group"
+                      className="relative cursor-pointer group flex justify-center"
                       onClick={() => openMediaModal(media, project.title)}
                     >
                       {/* Display thumbnail as image if available, otherwise show video */}
@@ -270,58 +263,12 @@ const ProjectsSection = () => {
                           <img
                             src={`/${media.poster}`}
                             alt={`${project.title} thumbnail`}
-                            className="max-w-full max-h-[30vh] h-auto w-auto object-contain rounded"
+                            className="max-w-full max-h-[30vh] h-auto w-auto object-contain"
                           />
                           <div className="absolute inset-0 flex items-center justify-center">
                             <FiVideo className="text-white text-4xl opacity-80" />
                           </div>
                         </div>
-                      ) : (
-                        <video
-                          src={`/${media.src}`}
-                          muted
-                          loop
-                          preload="auto"
-                          className="max-w-full max-h-[30vh] h-auto w-auto object-contain rounded"
-                          onError={(e) => {
-                            const video = e.currentTarget as HTMLVideoElement;
-                            const fallback = video.parentElement?.querySelector(
-                              ".video-fallback"
-                            ) as HTMLElement;
-                            if (fallback) {
-                              video.style.display = "none";
-                              fallback.style.display = "flex";
-                            }
-                          }}
-                          onMouseEnter={(e) => {
-                            const video = e.currentTarget as HTMLVideoElement;
-                            video.play().catch(() => {});
-                          }}
-                          onMouseLeave={(e) => {
-                            const video = e.currentTarget as HTMLVideoElement;
-                            video.pause();
-                            video.currentTime = 0;
-                          }}
-                        />
-                      )}
-                      {/* Fallback div for thumbnail: Hidden by default */}
-                      <div
-                        className="thumbnail-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
-                      >
-                        <FiVideo className="text-white text-4xl" />
-                      </div>
-                      {/* Fallback div for video: Hidden by default, shown only on load error */}
-                      <div
-                        className="video-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
-                      >
-                        <FiVideo className="text-white text-4xl" />
-                      </div>
-                      <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-30 rounded transition-all duration-300 flex items-center justify-center">
-                        <FiMaximize
-                          className="text-white text-opacity-0 group-hover:text-opacity-100 transition-all duration-300"
-                          size={24}
-                        />
-                      </div>
                       <div className="mt-2 text-center text-gray-300 text-sm">
                         Video: {media.src.split("/").pop()}
                       </div>
@@ -433,7 +380,7 @@ const ProjectsSection = () => {
                 <img
                   src={`/${selectedMedia.media.src}`} // Fixed: Add leading '/' for public/ path
                   alt={selectedMedia.projectTitle}
-                  className="max-w-full max-h-[70vh] h-auto w-auto object-contain rounded"
+                  className="max-w-full max-h-[70vh] h-auto w-auto object-contain"
                 />
               ) : selectedMedia.media.type === "video" ? (
                 <div className="relative">
@@ -441,7 +388,7 @@ const ProjectsSection = () => {
                     src={`/${selectedMedia.media.src}`} // Fixed: Add leading '/' for public/ path
                     controls
                     autoPlay
-                    className="max-w-full max-h-[70vh] h-auto w-auto rounded"
+                    className="max-w-full max-h-[70vh] h-auto w-auto"
                   />
                 </div>
               ) : null}
