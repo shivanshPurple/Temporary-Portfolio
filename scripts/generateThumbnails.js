@@ -7,8 +7,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Directory paths
-const mediaDir = path.join(__dirname, '..', 'media');
+// Directory paths - generate thumbnails in public/media directory
+const mediaDir = path.join(__dirname, '..', 'public', 'media');
 const thumbnailPrefix = 'thumbnail-';
 
 // Get all video files in the media directory

@@ -304,7 +304,13 @@ const ProjectsSection = () => {
                           }}
                         />
                       )}
-                      {/* Fallback div: Hidden by default, shown only on load error */}
+                      {/* Fallback div for thumbnail: Hidden by default */}
+                      <div
+                        className="thumbnail-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
+                      >
+                        <FiVideo className="text-white text-4xl" />
+                      </div>
+                      {/* Fallback div for video: Hidden by default, shown only on load error */}
                       <div
                         className="video-fallback absolute inset-0 rounded bg-gray-700 hidden items-center justify-center"
                       >
