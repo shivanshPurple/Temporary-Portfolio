@@ -17,6 +17,8 @@ interface ProjectCarouselProps {
   loop?: boolean;
   resetIndex?: boolean;
   onResetIndex?: () => void;
+  isMobile?: boolean; // New prop to indicate mobile view
+  onIndexChange?: (index: number) => void; // Callback for index changes
 }
 
 const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
@@ -29,11 +31,15 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
   loop = true,
   resetIndex = false,
   onResetIndex,
+  isMobile = false, // Default to false
+  onIndexChange,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   // Reset index when resetIndex prop changes
   useEffect(() => {
@@ -44,6 +50,13 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
       }
     }
   }, [resetIndex, onResetIndex]);
+
+  // Notify parent of index changes
+  useEffect(() => {
+    if (onIndexChange) {
+      onIndexChange(currentIndex);
+    }
+  }, [currentIndex, onIndexChange]);
 
   // Handle modal pause
   useEffect(() => {
@@ -110,6 +123,33 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
     }
   };
 
+  // Touch event handlers for swipe functionality
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    
+    const distance = touchStartX.current - touchEndX.current;
+    const isLeftSwipe = distance > 50; // Minimum swipe distance
+    const isRightSwipe = distance < -50;
+    
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrev();
+    }
+    
+    // Reset touch positions
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
+
   // Navigation functions
   const goToNext = () => {
     if (loop) {
@@ -142,25 +182,28 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden rounded-xl group"
+      className={`relative w-full ${isMobile ? '' : 'h-full'} overflow-hidden rounded-xl group`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Carousel items */}
-      <div className="relative w-full h-full">
+      <div className={`relative w-full ${isMobile ? '' : 'h-full'}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: 100 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : 100 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
+            exit={{ opacity: 0, x: isMobile ? 0 : -100 }}
             transition={{ duration: 0.5 }}
-            className="w-full h-full"
+            className={`w-full ${isMobile ? '' : 'h-full'}`}
           >
             {items[currentIndex].content}
 
-            {/* Navigation arrows - inside the animated container so they fade with content */}
-            {items.length > 1 && (
+            {/* Navigation arrows - only show on desktop */}
+            {items.length > 1 && !isMobile && (
               <>
                 <button
                   onClick={goToPrev}
@@ -182,8 +225,8 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
         </AnimatePresence>
       </div>
 
-      {/* Dots indicator */}
-      {items.length > 1 && (
+      {/* Dots indicator - only show on desktop */}
+      {items.length > 1 && !isMobile && (
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
           {items.map((_, index) => (
             <button
@@ -201,7 +244,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
       )}
 
       {/* Autoplay indicator - shows at all times with action-indicating icons */}
-      {autoplay && (
+      {autoplay && !isMobile && (
         <div className="absolute top-4 right-4 flex items-center transition-opacity duration-300">
           <div className="bg-black bg-opacity-50 px-2 py-1 rounded-full flex items-center">
             {isPaused ? (

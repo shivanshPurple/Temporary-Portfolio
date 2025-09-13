@@ -78,6 +78,7 @@ This is a portfolio website built with React, TypeScript, and Vite. It showcases
 - **Location**: `src/containers/ProjectsSection.tsx`
 - **Purpose**: Efficient media display and interaction within carousel
 - **Features**:
+
   - Images displayed directly in carousel with proper scaling
   - Videos shown as thumbnails with video icon overlay in carousel
   - Media section automatically hides when no media is available
@@ -109,7 +110,7 @@ After implementing the initial upgrade plan, the portfolio was further simplifie
 4. **Consistent User Experience**: Unified design approach across all sections
 5. **Better Accessibility**: Streamlined navigation and interaction patterns
 6. **Faster Development**: Simpler components are quicker to understand and modify
-7. **Focus on Content**: Eliminated distractions to focus on project展示
+7. **Focus on Content**: Eliminated distractions to focus on project 展示
 
 ### Current Component Architecture
 
@@ -143,8 +144,43 @@ After implementing the initial upgrade plan, the portfolio was further simplifie
 8. **Interactive Elements**: Implement more interactive elements and effects
 9. **Mobile Optimization**: Further optimize for mobile devices and touch interactions
 10. **Search Functionality**: Add search capabilities to find specific projects
-11. **Social Sharing**: Add social sharing buttons for projects
-12. **Analytics Integration**: Add analytics to track project views and user engagement
+
+## Mobile Responsiveness Improvements
+
+Made several key improvements to ensure the portfolio works well on mobile devices:
+
+1. **Fixed PapaPurple text overflow**: Adjusted the TextPressure component in HeroSection to better handle mobile screen sizes by:
+   - Using viewport width (vw) units for font sizing
+   - Adding responsive container with max-width constraints
+   - Implementing dynamic font sizing based on screen width with min/max constraints
+
+2. **Responsive project card layout**: Modified the project cards in ProjectsSection to use a single column layout on mobile devices:
+   - Changed from fixed two-column layout to responsive flex layout
+   - Implemented flex-col on mobile (stacking description and media vertically)
+   - Maintained flex-row on medium screens and above (side-by-side layout)
+   - Ensured both description and media sections are properly contained
+
+3. **Improved filtering interface**: Enhanced the category filtering chips for better mobile experience:
+   - Added wrapping container to ensure proper alignment
+   - Improved spacing and touch targets for easier interaction
+   - Maintained visual consistency across all screen sizes
+
+4. **Responsive carousel sizing**: Made the project carousel container responsive:
+   - Full width on mobile devices
+   - Constrained width (80vw) on medium screens and above
+   - Maintained proper height constraints across all devices
+
+8. **Enhanced mobile carousel experience**: Improved the project carousel for mobile devices:
+   - Moved the navigation dots indicator below the category filters for better layout
+   - Removed left/right navigation buttons on mobile for a cleaner interface
+   - Implemented swipe gestures for navigation (like Tinder) on mobile devices
+   - Maintained all desktop functionality while optimizing for touch interactions
+   - Added proper touch event handling for smooth swipe detection
+   - Removed height restrictions on mobile to allow content to expand naturally
+   - Disabled autoplay on mobile devices to prevent automatic transitions
+   - Added swipe instruction caption to guide users on mobile navigation
+
+These changes ensure that the portfolio provides an optimal viewing experience across all device sizes while maintaining the visual design and functionality. 11. **Social Sharing**: Add social sharing buttons for projects 12. **Analytics Integration**: Add analytics to track project views and user engagement
 
 ## Upgrade Plan - React Portfolio Conversion
 
@@ -202,16 +238,16 @@ src/ ├── components/ │ ├── reactbits/ # Drop-in components from MC
 - **Filter Tabs/Chips**: Simple category filtering chips above carousel (single-select)
 - **Display**: Large carousel component taking 80vw width and 65vh height, centered on screen
 - **Card Pattern**: Split-layout project cards with description on left and media on right
-- **Media Handling**: 
+- **Media Handling**:
   - Images displayed directly in carousel
   - Videos shown as thumbnails with video icon overlay
   - Click to open media in full-screen modal
   - Auto-play videos in modal
-- **Navigation**: 
+- **Navigation**:
   - Orange navigation arrows that appear on hover
   - Autoplay indicator (orange) that appears on hover
   - 8-second autoplay delay for better viewing experience
-- **Adaptive Layout**: 
+- **Adaptive Layout**:
   - Media section collapses when no media is available
   - Description section reduces size for content-light projects
   - Scrollable media section for projects with multiple items
@@ -339,18 +375,18 @@ interface Project {
 
 ### Exact Component-to-Section Mapping Reference
 
-| Section        | Components Used                                                                                               |
-| -------------- | ------------------------------------------------------------------------------------------------------------- |
-| Global         | Dock, Blob Cursor/Target Cursor, Click Spark                                                                  |
-| Hero           | Aurora + Dark Veil; Split Text; Shiny/Gradient Text; Glare Hover                                              |
-| About          | Spotlight Card; Beams/Light Rays; True Focus                                                                  |
-| Featured       | Carousel; Glare Hover; Scroll Reveal                                                                          |
-| Projects       | Carousel; Category filtering chips                                                                            |
-| Details        | Glass Surface/Fluid Glass; Carousel/Rolling Gallery; Scroll Stack; Ribbons                                    |
-| Skills         | Chroma Grid; Variable Proximity                                                                               |
-| Certifications | Card Swap; Light Rays/Iridescence                                                                             |
-| Graphic Design | Circular Gallery/Rolling Gallery; Aurora variant                                                              |
-| Footer         | Scroll Velocity; Dot Grid                                                                                     |
+| Section        | Components Used                                                            |
+| -------------- | -------------------------------------------------------------------------- |
+| Global         | Dock, Blob Cursor/Target Cursor, Click Spark                               |
+| Hero           | Aurora + Dark Veil; Split Text; Shiny/Gradient Text; Glare Hover           |
+| About          | Spotlight Card; Beams/Light Rays; True Focus                               |
+| Featured       | Carousel; Glare Hover; Scroll Reveal                                       |
+| Projects       | Carousel; Category filtering chips                                         |
+| Details        | Glass Surface/Fluid Glass; Carousel/Rolling Gallery; Scroll Stack; Ribbons |
+| Skills         | Chroma Grid; Variable Proximity                                            |
+| Certifications | Card Swap; Light Rays/Iridescence                                          |
+| Graphic Design | Circular Gallery/Rolling Gallery; Aurora variant                           |
+| Footer         | Scroll Velocity; Dot Grid                                                  |
 
 ### Risks and Mitigations
 
@@ -383,12 +419,13 @@ interface Project {
 # MOST IMPORTANT PART.
 
 - Update qwen.md file after every successful task completion.
-- When doing git commit message, use the following format: "[qwen] feat|fix|docs|style|refactor|test|chore: <description>".
+- Do not ever run npm dev. Because the real software engineer is already running it.
 - Note: All components have been reorganized from `src/blocks` to `src/components` for better maintainability.
 
 ## Thumbnail Generation
 
 Completed thumbnail generation for all video files using ffmpeg:
+
 - Created a thumbnail generation script using Node.js and ffmpeg
 - Generated thumbnails for all 17 video files in the media directory
 - Updated package.json with a script to run thumbnail generation
@@ -409,6 +446,7 @@ Completed thumbnail generation for all video files using ffmpeg:
 ## Media File Cleanup
 
 Identified and removed duplicate and unreferenced media files:
+
 - Created a script to compare media files with references in data.json
 - Identified 2 unreferenced files: pic.jpeg and shivansh.png
 - Removed these files from both media/ and public/media/ directories
@@ -419,12 +457,14 @@ Identified and removed duplicate and unreferenced media files:
 ## Content Updates
 
 Enhanced portfolio content with more detailed sections:
+
 - Created comprehensive About Me section with skills and background information
 - Updated Contact section with Instagram handle (@shivansh-purple) and email (shivanshsaini17@gmail.com)
 
 ## Vercel Deployment
 
 Configured thumbnail generation for Vercel deployments:
+
 - Created build-time thumbnail generation script that runs during Vercel deployment
 - Added prebuild script to package.json to automatically attempt thumbnail generation
 - Provided fallback instructions for environments without ffmpeg
@@ -434,9 +474,16 @@ Configured thumbnail generation for Vercel deployments:
 ## Bug Fixes
 
 Resolved several issues in the portfolio:
+
 - Fixed FiGamepad icon error in About section by replacing with available FiCpu icon
 - Fixed carousel pause/play functionality on mouse enter/exit by improving hover detection and autoplay indicator visibility
 - Updated autoplay indicator to show at all times with action-indicating icons (green play icon when mouse is inside, orange pause icon when mouse is outside)
 
 ## Qwen Added Memories
+
 - I will automatically update the qwen.md file after every successful task completion without requiring manual prompting. This is now part of my standard workflow.
+
+## Git rules
+
+-
+- When doing git commit message, use the following format: "[qwen] feat|fix|docs|style|refactor|test|chore: <description>".
