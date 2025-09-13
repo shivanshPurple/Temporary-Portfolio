@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TargetCursor from "./components/TargetCursor/TargetCursor";
 import DarkVeil from "./components/DarkVeil/DarkVeil";
 import Dock from "./components/Dock/Dock";
@@ -7,7 +7,6 @@ import { Handshake, House, Target, UserRound } from "lucide-react";
 import HeroSection from "./containers/HeroSection";
 import AboutSection from "./containers/AboutSection";
 import ProjectsSection from "./containers/ProjectsSection";
-import ProjectDetail from "./containers/ProjectDetail";
 import ContactSection from "./containers/ContactSection";
 
 function AppContent() {
@@ -66,30 +65,32 @@ function AppContent() {
       {/* Scroll container with snap points */}
       <div className="snap-container snap-y snap-mandatory h-screen overflow-y-scroll">
         <Routes>
-          <Route path="/" element={
-            <>
-              {/* Hero Section */}
-              <div className="snap-start">
-                <HeroSection />
-              </div>
+          <Route
+            path="/"
+            element={
+              <>
+                {/* Hero Section */}
+                <div className="snap-start">
+                  <HeroSection />
+                </div>
 
-              {/* Projects Section */}
-              <div className="snap-start">
-                <ProjectsSection />
-              </div>
+                {/* Projects Section */}
+                <div className="snap-start">
+                  <ProjectsSection />
+                </div>
 
-              {/* About Section */}
-              <div className="snap-start">
-                <AboutSection />
-              </div>
+                {/* About Section */}
+                <div className="snap-start">
+                  <AboutSection />
+                </div>
 
-              {/* Contact Section */}
-              <div className="snap-start">
-                <ContactSection />
-              </div>
-            </>
-          } />
-          <Route path="/project/:slug" element={<ProjectDetail />} />
+                {/* Contact Section */}
+                <div className="snap-start">
+                  <ContactSection />
+                </div>
+              </>
+            }
+          />
         </Routes>
       </div>
     </div>

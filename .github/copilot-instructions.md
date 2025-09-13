@@ -65,7 +65,6 @@ const filteredProjects = useMemo(
       : projectsData.projects.filter((p) => p.category === selectedCategory),
   [selectedCategory]
 );
-<Carousel items={filteredProjects} onItemClick={setSelectedProject} />;
 {
   selectedProject && (
     <Modal project={selectedProject} onClose={() => setSelectedProject(null)} />
@@ -96,14 +95,13 @@ From qwen.md: Update `qwen.md` after successful tasks (append to memories/lesson
 - **Imports**: Relative paths (e.g., `../components/Carousel`). Data: `import projectsData from '../data.json' assert { type: 'json' }` (ES modules).
 - **Hooks**: Custom hooks in components (e.g., for carousel logic). Memoize filtered data to avoid re-renders.
 - **Error Handling**: Graceful fallbacks (e.g., hide media if empty array). No try-catch; rely on TypeScript for prop validation.
-- **Dependencies**: Pin versions (e.g., React 19, GSAP 3.13). Install via `npm i`. Use `lenis` for smooth scroll if re-enabled.
 - **Git**: Commits follow `[qwen] feat|fix|docs|style|refactor|test|chore: <description>` (e.g., "[qwen] feat: add new project to data.json"). Branch from `master`. After commits, update `qwen.md` with changes/lessons.
 
 Differing from common: No Redux/Context for projects (local state suffices). Scroll-based routing over multi-page. Data in static JSON, not API (for portfolio simplicity). Single-select filtering (no multi-select yet).
 
 ## Integration Points and Dependencies
 
-- **External**: Lucide icons (`lucide-react`), GSAP (`@gsap/react`), Framer Motion (`motion`), Lenis (smooth scroll, optional). Media in `public/media/` (videos/images/PDFs).
+- **External**: Lucide icons (`lucide-react`), GSAP (`@gsap/react`), Framer Motion (`motion`), Media in `public/media/` (videos/images/PDFs).
 - **Cross-Component**: `PrefsContext` wraps app; consume via `usePrefs()`. Events: `onItemClick` prop for carousel-to-modal. Routing: `useParams` in `ProjectDetail.tsx` matches slug to project title.
 - **Fonts**: Import Poppins-ExtraBold.ttf in `index.css` for headings.
 - **Build Integrations**: Vite with `@vitejs/plugin-react-swc` for fast builds. Tailwind via `@tailwindcss/vite` plugin. No server-side rendering.
