@@ -90,13 +90,12 @@ const TextPressure: React.FC<TextPressureProps> = ({
   const setSize = () => {
     if (!containerRef.current || !titleRef.current) return;
 
-    const { width: containerW, height: containerH } =
-      containerRef.current.getBoundingClientRect();
+    const { height: containerH } = containerRef.current.getBoundingClientRect();
 
     // Use vw (viewport width) units for better responsiveness
     const viewportWidth = window.innerWidth;
     let newFontSize = viewportWidth * 0.08; // 8vw equivalent
-    
+
     // Apply min and max constraints
     newFontSize = Math.max(newFontSize, minFontSize);
     newFontSize = Math.min(newFontSize, 120); // Cap max font size

@@ -44,20 +44,24 @@ const ProjectsSection = () => {
   useEffect(() => {
     // Check if device is mobile/tablet
     const checkIsMobile = () => {
-      const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
-      
+      const userAgent =
+        navigator.userAgent || navigator.vendor || (window as any).opera;
+
       // Simple mobile detection - checks for common mobile device identifiers
-      const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-      
+      const isMobileDevice =
+        /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+          userAgent
+        );
+
       // Also check screen width as a fallback
       const isSmallScreen = window.innerWidth <= 768;
-      
+
       setIsMobile(isMobileDevice || isSmallScreen);
     };
 
     checkIsMobile();
     window.addEventListener("resize", checkIsMobile);
-    
+
     return () => {
       window.removeEventListener("resize", checkIsMobile);
     };
@@ -182,11 +186,6 @@ const ProjectsSection = () => {
   // Render project card content for carousel
   const renderProjectCard = (project: Project) => {
     const hasMedia = project.media && project.media.length > 0;
-    const hasDescription =
-      project.description && project.description.trim().length > 0;
-
-    // Determine layout based on content
-    const showDescription = hasDescription;
     const showMedia = hasMedia;
 
     return (
@@ -217,9 +216,7 @@ const ProjectsSection = () => {
           </h3>
 
           {/* Description */}
-          <p className="text-gray-300 mb-4 flex-grow">
-            {project.description}
-          </p>
+          <p className="text-gray-300 mb-4 flex-grow">{project.description}</p>
 
           {/* Technologies */}
           <div className="mb-4">
@@ -246,15 +243,17 @@ const ProjectsSection = () => {
         </div>
 
         {/* Right side - Media */}
-        <div
-          className="w-full md:w-1/2 p-6 bg-gray-900 md:rounded-r-xl flex flex-col"
-        >
+        <div className="w-full md:w-1/2 p-6 bg-gray-900 md:rounded-r-xl flex flex-col">
           <h4 className="font-semibold text-gray-200 mb-4 flex items-center">
             <FiImage className="mr-2" />
             Media
           </h4>
 
-          <div className={`flex-grow overflow-y-auto rounded-lg ${isMobile ? '' : 'max-h-[50vh]'} flex flex-col items-center justify-center`}>
+          <div
+            className={`flex-grow overflow-y-auto rounded-lg ${
+              isMobile ? "" : "max-h-[50vh]"
+            } flex flex-col items-center justify-center`}
+          >
             {showMedia &&
               project.media.map((media, index) => (
                 <div key={index} className="mb-4 flex justify-center w-full">
@@ -266,7 +265,9 @@ const ProjectsSection = () => {
                       <img
                         src={`/${media.src}`} // Fixed: Add leading '/' for public/ path
                         alt={project.title}
-                        className={`max-w-full h-auto w-auto object-contain ${isMobile ? '' : 'max-h-[40vh]'}`}
+                        className={`max-w-full h-auto w-auto object-contain ${
+                          isMobile ? "" : "max-h-[40vh]"
+                        }`}
                       />
                     </div>
                   ) : media.type === "video" ? (
@@ -280,7 +281,9 @@ const ProjectsSection = () => {
                           <img
                             src={`/${media.poster}`}
                             alt={`${project.title} thumbnail`}
-                            className={`max-w-full h-auto w-auto object-contain ${isMobile ? '' : 'max-h-[30vh]'}`}
+                            className={`max-w-full h-auto w-auto object-contain ${
+                              isMobile ? "" : "max-h-[30vh]"
+                            }`}
                           />
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="bg-gray-500 bg-opacity-30 rounded-full p-2">
@@ -294,7 +297,9 @@ const ProjectsSection = () => {
                           muted
                           loop
                           preload="auto"
-                          className={`max-w-full h-auto w-auto object-contain ${isMobile ? '' : 'max-h-[30vh]'}`}
+                          className={`max-w-full h-auto w-auto object-contain ${
+                            isMobile ? "" : "max-h-[30vh]"
+                          }`}
                           onError={(e) => {
                             const video = e.currentTarget as HTMLVideoElement;
                             const fallback = video.parentElement?.querySelector(
@@ -337,7 +342,7 @@ const ProjectsSection = () => {
   // Render dots indicator for mobile
   const renderMobileDots = () => {
     if (!isMobile || filteredProjects.length <= 1) return null;
-    
+
     return (
       <div className="flex justify-center space-x-2 mt-4 mb-6">
         {filteredProjects.map((_, index) => (
@@ -396,7 +401,7 @@ const ProjectsSection = () => {
 
         {/* Dots indicator for mobile - shown below filters */}
         {isMobile && renderMobileDots()}
-        
+
         {/* Swipe instruction for mobile */}
         {isMobile && filteredProjects.length > 1 && (
           <div className="text-gray-400 text-sm mb-4">
@@ -407,7 +412,11 @@ const ProjectsSection = () => {
 
       {/* Full width carousel container centered vertically */}
       <div className="w-full flex-grow flex items-center justify-center px-4">
-        <div className={`w-full md:w-[80vw] ${isMobile ? 'h-auto' : 'h-[65vh]'} max-w-full md:max-w-[80vw] ${isMobile ? '' : 'max-h-[65vh]'}`}>
+        <div
+          className={`w-full md:w-[80vw] ${
+            isMobile ? "h-auto" : "h-[65vh]"
+          } max-w-full md:max-w-[80vw] ${isMobile ? "" : "max-h-[65vh]"}`}
+        >
           {filteredProjects.length > 0 ? (
             <div className="w-full h-full">
               <ProjectCarousel
