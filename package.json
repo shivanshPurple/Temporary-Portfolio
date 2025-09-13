@@ -8,8 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate-thumbnails": "node scripts/generateThumbnails.js",
-    "prebuild": "node scripts/vercel-build.js"
+    "generate-thumbnails": "node scripts/generateThumbnails.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
