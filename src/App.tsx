@@ -1,16 +1,23 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import TargetCursor from "./components/TargetCursor/TargetCursor";
 import DarkVeil from "./components/DarkVeil/DarkVeil";
 import Dock from "./components/Dock/Dock";
-import { Handshake, House, Target, UserRound } from "lucide-react";
+import { Handshake, House, Target, UserRound, Link } from "lucide-react";
 import HeroSection from "./containers/HeroSection";
 import AboutSection from "./containers/AboutSection";
 import ProjectsSection from "./containers/ProjectsSection";
-import ContactSection from "./containers/ContactSection";
+import LinksSection from "./containers/LinksSection";
 
 function AppContent() {
   const [isMobile, setIsMobile] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     // Check if device is mobile/tablet
@@ -48,8 +55,8 @@ function AppContent() {
         <DarkVeil />
       </div>
 
-      {/* Navigation - Dock (appears all the time) */}
-      {!isMobile && (
+      {/* Navigation - Dock (only on home page) */}
+      {!isMobile && isHomePage && (
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
           <Dock
             items={[
@@ -78,20 +85,17 @@ function AppContent() {
                     ?.scrollIntoView({ behavior: "smooth" }),
               },
               {
-                label: "Contact",
-                icon: <Handshake color="white" />,
-                onClick: () =>
-                  document
-                    .getElementById("contact")
-                    ?.scrollIntoView({ behavior: "smooth" }),
+                label: "Links",
+                icon: <Link color="white" />,
+                onClick: () => (window.location.href = "/links"),
               },
             ]}
           />
         </div>
       )}
 
-      {/* Mobile navigation - simple fixed navigation at bottom */}
-      {isMobile && (
+      {/* Mobile navigation - simple fixed navigation at bottom (only on home page) */}
+      {isMobile && isHomePage && (
         <div className="fixed bottom-0 left-0 right-0 bg-[#060010] bg-opacity-80 backdrop-blur-sm z-50">
           <div className="flex justify-around items-center py-3">
             <button
@@ -131,16 +135,12 @@ function AppContent() {
               <span className="text-xs mt-1">About</span>
             </button>
             <button
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={() => (window.location.href = "/links")}
               className="flex flex-col items-center text-white"
-              aria-label="Contact"
+              aria-label="Links"
             >
-              <Handshake color="white" size={24} />
-              <span className="text-xs mt-1">Contact</span>
+              <Link color="white" size={24} />
+              <span className="text-xs mt-1">Links</span>
             </button>
           </div>
         </div>
@@ -172,13 +172,14 @@ function AppContent() {
                   <AboutSection />
                 </div>
 
-                {/* Contact Section */}
+                {/* Links Section */}
                 <div className="snap-start">
-                  <ContactSection />
+                  <LinksSection />
                 </div>
               </>
             }
           />
+          <Route path="/links" element={<LinksSection />} />
         </Routes>
       </div>
     </div>

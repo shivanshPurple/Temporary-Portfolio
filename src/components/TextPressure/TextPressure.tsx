@@ -92,13 +92,25 @@ const TextPressure: React.FC<TextPressureProps> = ({
 
     const { height: containerH } = containerRef.current.getBoundingClientRect();
 
-    // Use vw (viewport width) units for better responsiveness
+    // Use responsive font sizing based on screen size
     const viewportWidth = window.innerWidth;
-    let newFontSize = viewportWidth * 0.08; // 8vw equivalent
+
+    // Different scaling for different screen sizes
+    let newFontSize;
+    if (viewportWidth <= 768) {
+      // Mobile: smaller font
+      newFontSize = Math.max(viewportWidth * 0.12, minFontSize);
+    } else if (viewportWidth <= 1024) {
+      // Tablet: medium font
+      newFontSize = Math.max(viewportWidth * 0.1, minFontSize);
+    } else {
+      // Desktop: larger font
+      newFontSize = Math.max(viewportWidth * 0.15, minFontSize);
+    }
 
     // Apply min and max constraints
     newFontSize = Math.max(newFontSize, minFontSize);
-    newFontSize = Math.min(newFontSize, 120); // Cap max font size
+    newFontSize = Math.min(newFontSize, 200); // Cap max font size
 
     setFontSize(newFontSize);
     setScaleY(1);

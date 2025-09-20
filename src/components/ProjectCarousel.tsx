@@ -37,6 +37,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isGoingPrev, setIsGoingPrev] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -134,17 +135,17 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
 
   const handleTouchEnd = () => {
     if (!touchStartX.current || !touchEndX.current) return;
-    
+
     const distance = touchStartX.current - touchEndX.current;
     const isLeftSwipe = distance > 50; // Minimum swipe distance
     const isRightSwipe = distance < -50;
-    
+
     if (isLeftSwipe) {
       goToNext();
     } else if (isRightSwipe) {
       goToPrev();
     }
-    
+
     // Reset touch positions
     touchStartX.current = 0;
     touchEndX.current = 0;
@@ -160,6 +161,8 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
   };
 
   const goToPrev = () => {
+    console.log("Previous button clicked, setting isGoingPrev to true");
+    setIsGoingPrev(true);
     if (loop) {
       setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
     } else {
@@ -182,7 +185,9 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full ${isMobile ? '' : 'h-full'} overflow-hidden rounded-xl group`}
+      className={`relative w-full ${
+        isMobile ? "" : "h-full"
+      } overflow-hidden rounded-xl group`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
@@ -190,15 +195,15 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
       onTouchEnd={handleTouchEnd}
     >
       {/* Carousel items */}
-      <div className={`relative w-full ${isMobile ? '' : 'h-full'}`}>
+      <div className={`relative w-full ${isMobile ? "" : "h-full"}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: isMobile ? 0 : 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: isMobile ? 0 : -100 }}
-            transition={{ duration: 0.5 }}
-            className={`w-full ${isMobile ? '' : 'h-full'}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className={`w-full ${isMobile ? "" : "h-full"}`}
           >
             {items[currentIndex].content}
 
@@ -207,14 +212,14 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
               <>
                 <button
                   onClick={goToPrev}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-orange-500 hover:bg-opacity-90 transition-all z-10"
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-orange-500 hover:bg-opacity-90 transition-all z-10 cursor-target"
                   aria-label="Previous project"
                 >
                   <FiChevronLeft size={24} />
                 </button>
                 <button
                   onClick={goToNext}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-orange-500 hover:bg-opacity-90 transition-all z-10"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-orange-500 hover:bg-opacity-90 transition-all z-10 cursor-target"
                   aria-label="Next project"
                 >
                   <FiChevronRight size={24} />
@@ -232,7 +237,7 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
+              className={`w-3 h-3 rounded-full transition-all cursor-target ${
                 index === currentIndex
                   ? "bg-white scale-125"
                   : "bg-gray-500 hover:bg-gray-300"

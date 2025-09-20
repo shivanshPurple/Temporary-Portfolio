@@ -172,7 +172,7 @@ const ProjectsSection = () => {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center text-sm bg-purple-600 text-white px-3 py-1 rounded-full hover:bg-purple-700 transition-colors"
+              className="flex items-center text-sm bg-purple-600 text-white px-3 py-1 rounded-full hover:bg-purple-700 transition-colors cursor-target"
             >
               <span>{link.text}</span>
               <FiExternalLink className="ml-1" size={12} />
@@ -259,7 +259,7 @@ const ProjectsSection = () => {
                 <div key={index} className="mb-4 flex justify-center w-full">
                   {media.type === "image" ? (
                     <div
-                      className="relative cursor-pointer group flex justify-center"
+                      className="relative cursor-pointer group flex justify-center cursor-target"
                       onClick={() => openMediaModal(media, project.title)}
                     >
                       <img
@@ -272,7 +272,7 @@ const ProjectsSection = () => {
                     </div>
                   ) : media.type === "video" ? (
                     <div
-                      className="relative cursor-pointer group flex justify-center w-full"
+                      className="relative cursor-pointer group flex justify-center w-full cursor-target"
                       onClick={() => openMediaModal(media, project.title)}
                     >
                       {/* Display thumbnail as image if available, otherwise show video */}
@@ -364,7 +364,7 @@ const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen flex flex-col items-center justify-center py-16 px-4"
+      className="min-h-screen flex flex-col items-center justify-center py-16 px-4 relative z-10"
     >
       <div className="max-w-6xl mx-auto w-full text-center">
         <h2 className="text-4xl font-bold text-white mb-8">Projects</h2>
@@ -377,7 +377,7 @@ const ProjectsSection = () => {
               <button
                 key={category}
                 onClick={() => handleCategorySelect(category)}
-                className={`px-3 py-1 text-sm rounded-full transition-colors duration-300 flex items-center ${
+                className={`px-3 py-1 text-sm rounded-full transition-colors duration-300 flex items-center cursor-target ${
                   selectedCategory === category
                     ? "bg-purple-600 text-white"
                     : "bg-gray-700 text-gray-200 hover:bg-gray-600"
@@ -424,7 +424,7 @@ const ProjectsSection = () => {
                   id: index,
                   content: renderProjectCard(project),
                 }))}
-                autoplay={!isMobile} // Disable autoplay on mobile
+                autoplay={!isMobile} // Enable autoplay on desktop, disable on mobile
                 autoplayDelay={8000}
                 pauseOnHover={true}
                 loop={true}

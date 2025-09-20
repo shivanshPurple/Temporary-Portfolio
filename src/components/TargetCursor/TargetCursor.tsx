@@ -45,6 +45,11 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     const originalCursor = document.body.style.cursor;
     if (hideDefaultCursor) {
       document.body.style.cursor = "none";
+      // Also hide cursor on all elements
+      document.documentElement.style.cursor = "none";
+      document.querySelectorAll("*").forEach((el) => {
+        (el as HTMLElement).style.cursor = "none";
+      });
     }
 
     const cursor = cursorRef.current;

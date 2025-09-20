@@ -7,9 +7,9 @@ const HeroSection = () => {
     <>
       <section
         id="home"
-        className="min-h-screen flex flex-col justify-start items-center text-center space-y-4 pt-[30vh]"
+        className="min-h-screen flex flex-col justify-start items-center text-center space-y-16 pt-[30vh]"
       >
-        <div className="w-full max-w-6xl h-40 md:h-60 px-4">
+        <div className="w-full max-w-6xl px-4">
           <TextPressure
             text="PapaPurple"
             className="font-bold text-white cursor-target"
