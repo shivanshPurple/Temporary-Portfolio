@@ -8,7 +8,7 @@ import {
 import TargetCursor from "./components/TargetCursor/TargetCursor";
 import DarkVeil from "./components/DarkVeil/DarkVeil";
 import Dock from "./components/Dock/Dock";
-import { Handshake, House, Target, UserRound, Link } from "lucide-react";
+import { House, Target, UserRound, Link } from "lucide-react";
 import HeroSection from "./containers/HeroSection";
 import AboutSection from "./containers/AboutSection";
 import ProjectsSection from "./containers/ProjectsSection";

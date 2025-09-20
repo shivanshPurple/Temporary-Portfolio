@@ -37,7 +37,6 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const [isGoingPrev, setIsGoingPrev] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -72,54 +71,36 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
 
   // Autoplay functionality
   useEffect(() => {
-    console.log(
-      "Autoplay useEffect triggered, autoplay:",
-      autoplay,
-      "isPaused:",
-      isPaused
-    );
     if (!autoplay || isPaused) {
-      console.log("Autoplay stopped or paused");
       return;
     }
 
-    console.log("Starting autoplay interval with delay:", autoplayDelay);
     const interval = setInterval(() => {
-      console.log("Autoplay interval triggered, current index:", currentIndex);
       setCurrentIndex((prev) => {
         if (loop) {
-          const newIndex = (prev + 1) % items.length;
-          console.log("Moving to next item, new index:", newIndex);
-          return newIndex;
+          return (prev + 1) % items.length;
         } else {
-          const newIndex = prev < items.length - 1 ? prev + 1 : prev;
-          console.log("Moving to next item (no loop), new index:", newIndex);
-          return newIndex;
+          return prev < items.length - 1 ? prev + 1 : prev;
         }
       });
     }, autoplayDelay);
 
     return () => {
-      console.log("Clearing autoplay interval");
       clearInterval(interval);
     };
   }, [autoplay, autoplayDelay, isPaused, items.length, loop]);
 
   // Handle hover pause
   const handleMouseEnter = () => {
-    console.log("Mouse entered carousel, pauseOnHover:", pauseOnHover);
     setIsHovering(true);
     if (pauseOnHover) {
-      console.log("Pausing carousel");
       setIsPaused(true);
     }
   };
 
   const handleMouseLeave = () => {
-    console.log("Mouse left carousel, pauseOnHover:", pauseOnHover);
     setIsHovering(false);
     if (pauseOnHover && !(pauseOnModal && isModalOpen)) {
-      console.log("Resuming carousel");
       setIsPaused(false);
     }
   };
@@ -161,8 +142,6 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({
   };
 
   const goToPrev = () => {
-    console.log("Previous button clicked, setting isGoingPrev to true");
-    setIsGoingPrev(true);
     if (loop) {
       setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
     } else {
