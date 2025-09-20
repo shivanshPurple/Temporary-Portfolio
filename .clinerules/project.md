@@ -15,7 +15,7 @@ A modern, interactive portfolio website built with React and TypeScript, featuri
 - Lucide React for icon components
 - Tailwind CSS for styling
 
-# Things to Remember
+# Recent updates
 
 - Debug console logs removed from ProjectCarousel component for production build
 - Unused imports and variables cleaned up to resolve TypeScript errors
